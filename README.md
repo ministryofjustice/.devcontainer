@@ -4,7 +4,7 @@
 
 This repository was created by Ministry of Justice's Dev Container Community of Practice. The goal is to release a foundational image for deployment, develop features that boost developer efficiency, and set a benchmark for using containerised development environments within the Ministry of Justice.
 
-Contact us on our Slack channel - [`#devcontainer`](https://moj.enterprise.slack.com/archives/C06DZ4F04JZ ).
+Contact us on our Slack channel - [`#devcontainer-community`](https://moj.enterprise.slack.com/archives/C06DZ4F04JZ ).
 
 ### Contributing
 
