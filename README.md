@@ -6,6 +6,6 @@ This repository was created by Ministry of Justice's Dev Container Community of 
 
 Contact us on our Slack channel - [`#devcontainer-community`](https://moj.enterprise.slack.com/archives/C06DZ4F04JZ ).
 
-### Contributing
+# Contributing
 
 The base branch requires all commits to be signed. Learn more about signing commits [here](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification).
