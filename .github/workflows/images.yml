@@ -38,7 +38,6 @@ jobs:
     if: ${{ needs.detect-changes.outputs.images != '[]' }}
     name: Build and Test
     runs-on: ubuntu-latest
-    steps:
     strategy:
       fail-fast: false
       matrix:
