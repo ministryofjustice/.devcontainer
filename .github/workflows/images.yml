@@ -50,4 +50,4 @@ jobs:
       - name: Build and Test
         id: build_and_test
         run: |
-          bash scripts/build-and-test.sh ${{ matrix.image }}
+          bash scripts/images/build-and-test.sh ${{ matrix.image }}
