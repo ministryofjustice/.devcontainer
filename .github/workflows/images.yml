@@ -7,6 +7,11 @@ on:
       - main
     paths:
       - images/**
+  push:
+    branches:
+      - main
+    paths:
+      - images/**
 
 permissions: {}
 
@@ -33,11 +38,59 @@ jobs:
         with:
           filters: .github/path-filters/images.yml
 
+  preflight-checks:
+    needs: [detect-changes]
+    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref == 'refs/heads/main' }}
+    name: Preflight Checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: read
+      packages: read
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ${{ fromJson(needs.detect-changes.outputs.images) }}
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Check Version (GitHub Container Registry)
+        id: check_version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "${{ env.GH_TOKEN }}" | skopeo login ghcr.io --username ${{ github.actor }} --password-stdin
+
+          version=$(jq -r '.version' images/${{ inputs.image }}/config.json)
+          export version
+
+          if skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}; then
+            image_exists=true
+          else
+            echo "image_exists=false" >>"${GITHUB_ENV}"
+            echo "tag_exists=false" >>"${GITHUB_ENV}"
+          fi
+
+          if [[ "${image_exists}" == "true" ]]; then
+            checkTag=$(skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }} | jq -r --arg version "${version}" '.Tags | index($version)')
+            export checkTag
+
+            if [[ -z "${imageTag}" ]]; then
+              echo "tag_exists=false" >>"${GITHUB_ENV}"
+            else
+              echo "tag_exists=true" >>"${GITHUB_ENV}"
+            fi
+
+
   build-test-scan:
     needs: [detect-changes]
-    if: ${{ needs.detect-changes.outputs.images != '[]' }}
+    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref != 'refs/heads/main' }}
     name: Build and Test
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       fail-fast: false
       matrix:
