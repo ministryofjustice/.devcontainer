@@ -42,12 +42,25 @@ jobs:
       fail-fast: false
       matrix:
         image: ${{ fromJson(needs.detect-changes.outputs.images) }}
+        platform: [linux/amd64, linux/arm64]
     steps:
       - name: Checkout
         id: checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-      - name: Build and Test
-        id: build_and_test
-        run: |
-          bash scripts/images/build-and-test.sh ${{ matrix.image }}
+      - name: Set Up QEMU
+        id: setup_qemu
+        uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
+
+      - name: Set Up Docker Buildx
+        id: setup_docker_buildx
+        uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
+
+      - name: Build Image
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
+        with:
+          file: images/${{ matrix.image }}/Dockerfile
+          context: images/${{ matrix.image }}
+          platforms: ${{ matrix.platform }}
+          load: true
+          tags: ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}

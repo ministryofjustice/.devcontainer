@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-# 1. Build image
-
-# 2. Run GoogleContainerTools/container-structure-test
-
 IMAGE="${1}"
 IMAGE_DIRECTORY="images/${IMAGE}"
 IMAGE_TAG="ghcr.io/ministryofjustice/devcontainer-${IMAGE}:local"
