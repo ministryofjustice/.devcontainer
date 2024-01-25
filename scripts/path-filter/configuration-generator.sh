@@ -5,11 +5,13 @@ MODE="${1}"
 case ${MODE} in
 features)
   PATH_FILTER_CONFIGURATION_FILE=".github/path-filters/features.yml"
+  SEARCH_BASE="features"
   SEARCH_PATTERN="devcontainer-feature.json"
   SKIP_FILE=".feature-path-filter-ignore"
   ;;
 images)
   PATH_FILTER_CONFIGURATION_FILE=".github/path-filters/images.yml"
+  SEARCH_BASE="images"
   SEARCH_PATTERN="*Containerfile*"
   SKIP_FILE=".image-path-filter-ignore"
   ;;
@@ -19,11 +21,15 @@ images)
   ;;
 esac
 
-folders=$(find . -type f -name "${SEARCH_PATTERN}" -exec dirname {} \; | sort -h | uniq | cut -c 3-)
+folders=$(find "${SEARCH_BASE}" -type f -name "${SEARCH_PATTERN}" -exec dirname {} \; | sort -h | uniq | sed 's#.*/##')
 export folders
 
 echo "=== Folders ==="
 echo "${folders}"
+
+
+mkdir --parents "$(dirname "${PATH_FILTER_CONFIGURATION_FILE}")"
+touch "${PATH_FILTER_CONFIGURATION_FILE}"
 
 echo "Generating ${PATH_FILTER_CONFIGURATION_FILE}"
 cat >"${PATH_FILTER_CONFIGURATION_FILE}" <<EOL
