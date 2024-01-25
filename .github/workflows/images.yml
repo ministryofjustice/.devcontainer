@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: read
+      id-token: write
       packages: read
     strategy:
       fail-fast: false
