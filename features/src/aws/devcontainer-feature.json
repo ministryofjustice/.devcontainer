@@ -1,0 +1,18 @@
+{
+  "id": "aws",
+  "version": "1.0.0",
+  "name": "AWS",
+  "description": "AWS functionality: CLI, SSO CLI",
+  "options": {
+    "awsCliVersion": {
+      "type": "string",
+      "description": "Version of the AWS CLI to install",
+      "default": "latest"
+    },
+    "awsSsoCliVersion": {
+      "type": "string",
+      "description": "Version of AWS SSO CLI to install",
+      "default": "latest"
+    }
+  }
+}

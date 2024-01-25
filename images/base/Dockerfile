@@ -7,6 +7,19 @@ LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.url="https://github.com/ministryofjustice/data-platform/tree/main/containers/actions-runner"
 
 COPY --chown=nobody:nobody --chmod=0755 src/usr/local/bin/devcontainer-utils /usr/local/bin/devcontainer-utils
+COPY --chown=nobody:nobody --chmod=0444 src/usr/local/etc/vscode-dev-containers/first-run-notice.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt
+
+RUN chsh --shell $(which zsh) vscode
+RUN install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer
+RUN install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/featurerc.d
+RUN cat <<EOF >> /home/vscode/.zshrc
+
+# dev container feature completion scripts
+for file in "\${HOME}"/.devcontainer/featurerc.d/*.sh; do
+  source "\${file}"
+done
+
+EOF
 
 ONBUILD RUN apt-get update --yes \
             && apt-get upgrade --yes \

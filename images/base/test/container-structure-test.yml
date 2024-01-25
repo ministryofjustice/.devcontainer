@@ -12,6 +12,11 @@ commandTests:
     args: ["--group", "vscode"]
     expectedOutput: ["1000"]
 
+  - name: "vscode user getent"
+    command: "getent"
+    args: ["passwd", "vscode" ]
+    expectedOutput: ["vscode:x:1000:1000::/home/vscode:/usr/bin/zsh"]
+
 fileExistenceTests:
   - name: "devcontainer-utils"
     path: "/usr/local/bin/devcontainer-utils"
@@ -20,3 +25,22 @@ fileExistenceTests:
     uid: 65534
     gid: 65534
     isExecutableBy: "any"
+
+  - name: "first-run-notice.txt"
+    path: "/usr/local/etc/vscode-dev-containers/first-run-notice.txt"
+    shouldExist: true
+    permissions: "-r--r--r--" # 0444
+    uid: 65534
+    gid: 65534
+
+  - name: "featurerc.d"
+    path: "/home/vscode/.devcontainer/featurerc.d"
+    shouldExist: true
+    permissions: "drwxr-xr-x" # 0755
+    uid: 1000
+    gid: 1000
+
+fileContentTests:
+  - name: "zshrc featurerc.d"
+    path: "/home/vscode/.zshrc"
+    expectedContents: ["# dev container feature completion scripts"]
