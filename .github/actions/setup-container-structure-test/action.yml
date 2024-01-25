@@ -22,7 +22,7 @@ runs:
           exit 1
         fi
 
-        if [[ "${{ inputs.version" == "latest"]]; then
+        if [[ "${{ inputs.version }}" == "latest"]]; then
           version="$(curl --silent https://api.github.com/repos/GoogleContainerTools/container-structure-test/releases/latest | jq -r '.tag_name')"
         else
           version="${{ inputs.version }}"
