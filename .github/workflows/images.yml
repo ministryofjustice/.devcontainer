@@ -63,7 +63,7 @@ jobs:
         run: |
           echo "${{ env.GH_TOKEN }}" | skopeo login ghcr.io --username ${{ github.actor }} --password-stdin
 
-          version=$(jq -r '.version' images/${{ inputs.image }}/config.json)
+          version=$(jq -r '.version' images/${{ matrix.image }}/config.json)
           export version
 
           if skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}; then
