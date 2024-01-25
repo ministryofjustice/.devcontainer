@@ -12,7 +12,7 @@ features)
 images)
   PATH_FILTER_CONFIGURATION_FILE=".github/path-filters/images.yml"
   SEARCH_BASE="images"
-  SEARCH_PATTERN="*Containerfile*"
+  SEARCH_PATTERN="*Dockerfile*"
   SKIP_FILE=".image-path-filter-ignore"
   ;;
 *)

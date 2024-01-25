@@ -11,7 +11,7 @@ CONTAINER_STRUCTURE_TEST_IMAGE="gcr.io/gcp-runtimes/container-structure-test:lat
 
 echo "Building [ ${IMAGE} ] as [ ${IMAGE_TAG} ]"
 
-docker build --file "${IMAGE_DIRECTORY}/Containerfile" --tag "${IMAGE_TAG}" "${IMAGE_DIRECTORY}"
+docker build --file "${IMAGE_DIRECTORY}/Dockerfile" --tag "${IMAGE_TAG}" "${IMAGE_DIRECTORY}"
 
 if [[ -f "${IMAGE_DIRECTORY}/test/container-structure-test.yml" ]]; then
   echo "Running container structure test for [ ${IMAGE_TAG} ]"
