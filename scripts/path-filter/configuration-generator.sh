@@ -21,7 +21,7 @@ images)
   ;;
 esac
 
-folders=$(find "${SEARCH_BASE}" -type f -name "${SEARCH_PATTERN}" -exec dirname {} \; | sort -h | uniq | sed 's#.*/##')
+folders=$(find "${SEARCH_BASE}" -type f -name "${SEARCH_PATTERN}" -exec dirname {} \; | sort -h | uniq)
 export folders
 
 echo "=== Folders ==="
@@ -46,11 +46,7 @@ for folder in ${folders}; do
     continue
   fi
 
-  if [[ "${MODE}" == "terraform" ]]; then
-    baseName=$(echo "${folder}" | sed 's|/|-|g' | sed 's|terraform-||')
-  else
-    baseName=$(basename "${folder}")
-  fi
+  baseName=$(basename "${folder}")
 
   {
     printf "%s: %s/**\n" "${baseName}" "${folder}"
