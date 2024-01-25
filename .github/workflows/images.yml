@@ -82,6 +82,7 @@ jobs:
             else
               echo "tag_exists=true" >>"${GITHUB_ENV}"
             fi
+          fi
 
 
   build-test-scan:
