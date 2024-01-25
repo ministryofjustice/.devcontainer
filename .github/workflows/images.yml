@@ -50,7 +50,7 @@ jobs:
 
       - name: Set Up Google Container Structure Test
         id: setup_container_structure_test
-        uses: ./github/actions/setup-container-structure-test
+        uses: ./.github/actions/setup-container-structure-test
 
       - name: Set Up QEMU
         id: setup_qemu
