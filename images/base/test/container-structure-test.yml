@@ -1,0 +1,22 @@
+---
+schemaVersion: 2.0.0
+
+commandTests:
+  - name: "vscode user"
+    command: "id"
+    args: ["--user", "vscode"]
+    expectedOutput: ["1000"]
+
+  - name: "vscode group"
+    command: "id"
+    args: ["--group", "vscode"]
+    expectedOutput: ["1000"]
+
+fileExistenceTests:
+  - name: "devcontainer-utils"
+    path: "/usr/local/bin/devcontainer-utils"
+    shouldExist: true
+    permissions: "-rwxr-xr-x" # 0755
+    uid: 65534
+    gid: 65534
+    isExecutableBy: "any"

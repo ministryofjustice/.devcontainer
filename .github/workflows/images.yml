@@ -1,0 +1,54 @@
+---
+name: Images
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - images/**
+
+permissions: {}
+
+jobs:
+  detect-changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      images: ${{ steps.detect_changes.outputs.changes }}
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Build path-filters file
+        id: build_path_filters
+        run: bash scripts/path-filter/configuration-generator.sh images
+
+      - name: Detect changes
+        id: detect_changes
+        uses: dorny/paths-filter@4512585405083f25c027a35db413c2b3b9006d50 # v2.11.1
+        with:
+          filters: .github/path-filter/images.yml
+
+  build-and-test:
+    needs: [detect-changes]
+    if: ${{ needs.detect-changes.outputs.images != '[]' }}
+    name: Build and Test
+    runs-on: ubuntu-latest
+    steps:
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ${{ fromJson(needs.detect-changes.outputs.images) }}
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Build and Test
+        id: build_and_test
+        run: |
+          bash scripts/build-and-test.sh ${{ matrix.image }}
