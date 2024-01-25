@@ -15,26 +15,27 @@ runs:
       shell: bash
       run: |
         if [[ "$(uname -m)" == "x86_64" ]]; then
-          architecture="amd64"
+          export architecture="amd64"
         elif [[ "$(uname -m)" == "aarch64" ]]; then
-          architecture="arm64"
+          export architecture="arm64"
         else
           echo "Unsupported architecture: $(uname -m)"
           exit 1
         fi
 
         if [[ "${{ inputs.version }}" == "latest" ]]; then
-          version="$(curl --silent https://api.github.com/repos/GoogleContainerTools/container-structure-test/releases/latest | jq -r '.tag_name')"
+          export version="$(curl --silent https://api.github.com/repos/GoogleContainerTools/container-structure-test/releases/latest | jq -r '.tag_name')"
         else
-          version="${{ inputs.version }}"
+          export version="${{ inputs.version }}"
         fi
 
-        mkdir --parents "${{ github.workspace }}/.google-container-structure-test"
+        mkdir --parents "${GITHUB_WORKSPACE}/.google-container-structure-test"
 
-        curl --location --silent --show-error --fail --output "${{ github.workspace }}/.google-container-structure-test/container-structure-test" "https://storage.googleapis.com/container-structure-test/v${version}/container-structure-test-linux-${architecture}"
+        curl --location --silent --show-error --fail "https://storage.googleapis.com/container-structure-test/v${version}/container-structure-test-linux-${architecture}" \
+          --output "${GITHUB_WORKSPACE}/.google-container-structure-test/container-structure-test"
 
-        chmod +x "${{ github.workspace }}/.google-container-structure-test/container-structure-test"
+        chmod +x "${GITHUB_WORKSPACE}/.google-container-structure-test/container-structure-test"
 
-        echo "${{ github.workspace }}/.google-container-structure-test" >>"${GITHUB_PATH}"
+        echo "${GITHUB_WORKSPACE}/.google-container-structure-test" >>"${GITHUB_PATH}"
 
         container-structure-test version
