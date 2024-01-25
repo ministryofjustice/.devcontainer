@@ -12,6 +12,7 @@ runs:
   using: "composite"
   steps:
     - name: Set Up Google Container Structure Test
+      shell: bash
       run: |
         if [[ "$(uname -m)" == "x86_64" ]]; then
           architecture="amd64"
@@ -34,6 +35,6 @@ runs:
 
         chmod +x "${{ github.workspace }}/.google-container-structure-test/container-structure-test"
 
-        echo "${{ github.workspace }}/.google-container-structure-test" >>"${{ GITHUB_PATH }}"
+        echo "${{ github.workspace }}/.google-container-structure-test" >>"${GITHUB_PATH}"
 
         container-structure-test version
