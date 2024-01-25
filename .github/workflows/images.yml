@@ -52,11 +52,6 @@ jobs:
         id: setup_container_structure_test
         uses: ./.github/actions/setup-container-structure-test
 
-      - name: DEBUG
-        id: debug
-        run: |
-          container-structure-test version
-
       - name: Set Up QEMU
         id: setup_qemu
         uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
@@ -73,3 +68,11 @@ jobs:
           platforms: ${{ matrix.platform }}
           load: true
           tags: ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
+
+      - name: Container Structure Test
+        id: container_structure_test
+        run: |
+          container-structure-test test \
+            --platform ${{ matrix.platform }} \
+            --config images/${{ matrix.image }}/test/container-structure-test.yml \
+            --image ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
