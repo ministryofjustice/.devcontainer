@@ -33,7 +33,7 @@ jobs:
         with:
           filters: .github/path-filters/images.yml
 
-  build-and-test:
+  build-test-scan:
     needs: [detect-changes]
     if: ${{ needs.detect-changes.outputs.images != '[]' }}
     name: Build and Test
@@ -76,3 +76,12 @@ jobs:
             --platform ${{ matrix.platform }} \
             --config images/${{ matrix.image }}/test/container-structure-test.yml \
             --image ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
+
+      - name: Scan Image
+        id: scan_image
+        uses: aquasecurity/trivy-action@d43c1f16c00cfd3978dde6c07f4bbcf9eb6993ca # 0.16.1
+        with:
+          scan-type: image
+          image-ref: ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
+          exit-code: 1
+          severity: HIGH,CRITICAL
