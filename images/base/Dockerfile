@@ -7,3 +7,8 @@ LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.url="https://github.com/ministryofjustice/data-platform/tree/main/containers/actions-runner"
 
 COPY --chown=nobody:nobody --chmod=0755 src/usr/local/bin/devcontainer-utils /usr/local/bin/devcontainer-utils
+
+ONBUILD RUN apt-get update --yes \
+            && apt-get upgrade --yes \
+            && apt-get clean --yes \
+            && rm -rf /var/lib/apt/lists/*
