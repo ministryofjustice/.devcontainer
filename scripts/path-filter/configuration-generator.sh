@@ -27,8 +27,8 @@ export folders
 echo "=== Folders ==="
 echo "${folders}"
 
-
 mkdir --parents "$(dirname "${PATH_FILTER_CONFIGURATION_FILE}")"
+
 touch "${PATH_FILTER_CONFIGURATION_FILE}"
 
 echo "Generating ${PATH_FILTER_CONFIGURATION_FILE}"
