@@ -89,8 +89,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          mainSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/containers/${{ inputs.image }}/CHANGELOG.md --field ref="main" | jq -r '.sha')
-          branchSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/containers/${{ inputs.image }}/CHANGELOG.md --field ref="${GITHUB_HEAD_REF}" | jq -r '.sha')
+          mainSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${{ matrix.image }}/CHANGELOG.md --field ref="main" | jq -r '.sha')
+          branchSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${{ matrix.image }}/CHANGELOG.md --field ref="${GITHUB_HEAD_REF}" | jq -r '.sha')
 
           if [[ -z "${mainSha}" ]]; then
             SHA not found for main branch, assuming CHANGELOG.md does not exist
