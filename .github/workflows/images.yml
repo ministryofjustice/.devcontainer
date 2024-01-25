@@ -40,7 +40,7 @@ jobs:
 
   preflight-checks:
     needs: [detect-changes]
-    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref == 'refs/heads/main' }}
+    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref != 'refs/heads/main' }}
     name: Preflight Checks
     runs-on: ubuntu-latest
     permissions:
