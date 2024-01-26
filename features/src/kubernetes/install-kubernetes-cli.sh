@@ -6,14 +6,10 @@ source /usr/local/bin/devcontainer-utils
 
 get_system_architecture
 
-GITHUB_REPOSITORY="ministryofjustice/cloud-platform-cli"
 VERSION=${KUBERNETESCLIVERSION:-"latest"}
 
 if [[ "${VERSION}" == "latest" ]]; then
-  VERSION=$( curl --location --silent https://dl.k8s.io/release/stable.txt )
-  VERSION_STRIP_V="${VERSION#v}"
-else
-  VERSION_STRIP_V="${VERSION#v}"
+  VERSION=$(curl --location --silent https://dl.k8s.io/release/stable.txt)
 fi
 
 curl --fail-with-body --location "https://dl.k8s.io/release/${VERSION}/bin/linux/${ARCHITECTURE}/kubectl" \
