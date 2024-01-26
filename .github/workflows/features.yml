@@ -94,16 +94,12 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    strategy:
-      fail-fast: false
-      matrix:
-        feature: ${{ fromJson(needs.detect-changes.outputs.features) }}
     steps:
       - name: Checkout
         id: checkout
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
-      - name: Validate ${{ matrix.feature }}
+      - name: Validate
         uses: devcontainers/action@2858bb873d82d653b033bfe0977fb8a16708b0c3 # v1.4.1
         with:
           validate-only: true
