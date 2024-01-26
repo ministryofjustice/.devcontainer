@@ -107,4 +107,4 @@ jobs:
         uses: devcontainers/action@2858bb873d82d653b033bfe0977fb8a16708b0c3 # v1.4.1
         with:
           validate-only: true
-          base-path-to-features: features/src/${{ matrix.feature }}
+          base-path-to-features: features
