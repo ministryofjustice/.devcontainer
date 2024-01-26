@@ -1,6 +1,6 @@
 {
   "id": "aws",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "name": "AWS",
   "description": "Installs the AWS CLI and AWS SSO CLI",
   "options": {
