@@ -89,7 +89,7 @@ jobs:
 
   validate:
     needs: [detect-changes]
-    if: ${{ needs.detect-changes.outputs.features != '[]' && github.ref == 'refs/heads/main' }}
+    if: ${{ needs.detect-changes.outputs.features != '[]' && github.ref != 'refs/heads/main' }}
     name: Validate
     runs-on: ubuntu-latest
     permissions:
