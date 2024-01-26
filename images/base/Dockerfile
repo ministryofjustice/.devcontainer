@@ -10,7 +10,11 @@ COPY --chown=nobody:nobody --chmod=0755 src/usr/local/bin/devcontainer-utils /us
 COPY --chown=nobody:nobody --chmod=0444 src/usr/local/etc/vscode-dev-containers/first-run-notice.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt
 COPY --chown=vscode:vscode --chmod=0755 src/home/vscode/.oh-my-zsh/custom/themes/devcontainers.zsh-theme /home/vscode/.oh-my-zsh/custom/themes/devcontainers.zsh-theme
 
-RUN chsh --shell "$(which zsh)" vscode \
+RUN apt-get update --yes \
+    && apt-get upgrade --yes \
+    && apt-get clean --yes \
+    && rm -rf /var/lib/apt/lists/* \
+    && chsh --shell "$(which zsh)" vscode \
     && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer \
     && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/featurerc.d \
     && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/promptrc.d
