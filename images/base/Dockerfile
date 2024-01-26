@@ -13,8 +13,9 @@ COPY --chown=vscode:vscode --chmod=0755 src/home/vscode/.oh-my-zsh/custom/themes
 RUN chsh --shell "$(which zsh)" vscode \
     && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer \
     && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/featurerc.d \
-    && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/promptrc.d \
-    && cat <<EOF >> /home/vscode/.zshrc
+    && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/promptrc.d
+
+RUN cat <<EOF >> /home/vscode/.zshrc
 
 # dev container feature completion scripts
 if [ "\$(ls -A /home/vscode/.devcontainer/featurerc.d)" ]; then
