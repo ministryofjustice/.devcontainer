@@ -8,10 +8,12 @@ LABEL org.opencontainers.image.vendor="Ministry of Justice" \
 
 COPY --chown=nobody:nobody --chmod=0755 src/usr/local/bin/devcontainer-utils /usr/local/bin/devcontainer-utils
 COPY --chown=nobody:nobody --chmod=0444 src/usr/local/etc/vscode-dev-containers/first-run-notice.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt
+COPY --chown=vscode:vscode --chmod=0755 src/home/vscode/.oh-my-zsh/custom/themes/devcontainers.zsh-theme /home/vscode/.oh-my-zsh/custom/themes/devcontainers.zsh-theme
 
 RUN chsh --shell "$(which zsh)" vscode \
     && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer \
     && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/featurerc.d \
+    && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/promptrc.d \
     && cat <<EOF >> /home/vscode/.zshrc
 
 # dev container feature completion scripts

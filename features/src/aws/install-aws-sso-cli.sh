@@ -31,6 +31,8 @@ install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vs
 
 install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/aws-sso.sh /home/vscode/.devcontainer/featurerc.d/aws-sso.sh
 
+install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/promptrc.d/aws-sso.sh /home/vscode/.devcontainer/promptrc.d/aws-sso.sh
+
 awsSsoFilePassword=$(openssl rand -base64 48 | tr -dc 'a-zA-Z0-9' | cut -c -32)
 export awsSsoFilePassword
 

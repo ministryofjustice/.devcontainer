@@ -2,7 +2,7 @@
   "id": "aws",
   "version": "1.0.0",
   "name": "AWS",
-  "description": "AWS functionality: CLI, SSO CLI",
+  "description": "Installs the AWS CLI and AWS SSO CLI",
   "options": {
     "awsCliVersion": {
       "type": "string",

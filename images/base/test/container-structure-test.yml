@@ -33,8 +33,22 @@ fileExistenceTests:
     uid: 65534
     gid: 65534
 
+  - name: "devcontainers.zsh-theme"
+    path: "/home/vscode/.oh-my-zsh/custom/themes/devcontainers.zsh-theme"
+    shouldExist: true
+    permissions: "-rwxr-xr-x" # 0755
+    uid: 1000
+    gid: 1000
+
   - name: "featurerc.d"
     path: "/home/vscode/.devcontainer/featurerc.d"
+    shouldExist: true
+    permissions: "drwxr-xr-x" # 0755
+    uid: 1000
+    gid: 1000
+
+  - name: "promptrc.d"
+    path: "/home/vscode/.devcontainer/promptrc.d"
     shouldExist: true
     permissions: "drwxr-xr-x" # 0755
     uid: 1000
