@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2016
 
 PROMPT+='`\
   if [[ ${AWS_SSO_PROFILE} == *"development"* || ${AWS_SSO_PROFILE} == *"test"* ]]; then \
