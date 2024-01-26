@@ -1,0 +1,13 @@
+{
+  "id": "kubernetes",
+  "version": "1.0.0",
+  "name": "Kubernetes",
+  "description": "Installs the Kubernetes CLI",
+  "options": {
+    "kubernetesCliVersion": {
+      "type": "string",
+      "description": "Version of the Kubernetes CLI to install",
+      "default": "latest"
+    }
+  }
+}

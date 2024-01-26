@@ -1,0 +1,13 @@
+{
+  "id": "terraform",
+  "version": "1.0.0",
+  "name": "Terraform",
+  "description": "Installs the Terraform CLI",
+  "options": {
+    "terraformCliVersion": {
+      "type": "string",
+      "description": "Version of the Terraform CLI to install",
+      "default": "latest"
+    }
+  }
+}
