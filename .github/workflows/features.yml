@@ -223,4 +223,4 @@ jobs:
           devcontainer features publish \
             --registry ghcr.io \
             --namespace ministryofjustice/devcontainer-feature \
-            ./features/src/aws/
+            ./features/src/${{ matrix.feature }}
