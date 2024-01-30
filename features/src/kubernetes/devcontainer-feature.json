@@ -1,6 +1,6 @@
 {
   "id": "kubernetes",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "Kubernetes",
   "description": "Installs the Kubernetes CLI",
   "options": {
