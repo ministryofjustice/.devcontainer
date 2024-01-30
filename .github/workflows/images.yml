@@ -1,0 +1,227 @@
+---
+name: Images
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - images/**
+  push:
+    branches:
+      - main
+    paths:
+      - images/**
+
+permissions: {}
+
+jobs:
+  detect-changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      images: ${{ steps.detect_changes.outputs.changes }}
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Build path-filters file
+        id: build_path_filters
+        run: bash scripts/path-filter/configuration-generator.sh images
+
+      - name: Detect changes
+        id: detect_changes
+        uses: dorny/paths-filter@0bc4621a3135347011ad047f9ecf449bf72ce2bd # v3.0.0
+        with:
+          filters: .github/path-filters/images.yml
+
+  preflight-checks:
+    needs: [detect-changes]
+    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref != 'refs/heads/main' }}
+    name: Preflight Checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      packages: read
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ${{ fromJson(needs.detect-changes.outputs.images) }}
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Check Version
+        id: check_version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "${{ env.GH_TOKEN }}" | skopeo login ghcr.io --username ${{ github.actor }} --password-stdin
+
+          version=$(jq -r '.version' images/${{ matrix.image }}/config.json)
+          export version
+
+          if skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}; then
+            image_exists=true
+          else
+            echo "image_exists=false" >>"${GITHUB_ENV}"
+            echo "tag_exists=false" >>"${GITHUB_ENV}"
+          fi
+
+          if [[ "${image_exists}" == "true" ]]; then
+            checkTag=$(skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }} | jq -r --arg version "${version}" '.Tags | index($version)')
+            export checkTag
+
+            if [[ -z "${imageTag}" ]]; then
+              echo "tag_exists=false" >>"${GITHUB_ENV}"
+            else
+              echo "tag_exists=true" >>"${GITHUB_ENV}"
+            fi
+          fi
+
+      - name: Check CHANGELOG Updates
+        id: check_changelog_updates
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mainSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${{ matrix.image }}/CHANGELOG.md --field ref="main" | jq -r '.sha')
+          branchSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${{ matrix.image }}/CHANGELOG.md --field ref="${GITHUB_HEAD_REF}" | jq -r '.sha')
+
+          if [[ -z "${mainSha}" ]]; then
+            SHA not found for main branch, assuming CHANGELOG.md does not exist
+          elif [[ -z "${branchSha}" ]]; then
+            SHA not found for "${GITHUB_HEAD_REF}" branch, assuming CHANGELOG.md does not exist
+            "changelog_updated=false" >>"${GITHUB_ENV}"
+          elif [[ "${mainSha}" == "${branchSha}" ]]; then
+            echo "CHANGELOG.md matches main branch, needs to be updated"
+            echo "changelog_updated=false" >>"${GITHUB_ENV}"
+          elif [[ "${mainSha}" != "${branchSha}" ]]; then
+            echo "CHANGELOG.md does not match main branch, does not need to be updated"
+            echo "changelog_updated=true" >>"${GITHUB_ENV}"
+          fi
+
+      - name: Evaluate Checks
+        id: evaluate_checks
+        run: |
+          if [[ "${{ env.tag_exists }}" == "true" ]]; then
+            echo "::error::FAIL: Container tag already exists"
+            export failBuild="true"
+          else
+            echo "::notice::OK: Container tag does not exist"
+            export failBuild="false"
+          fi
+
+          if [[ "${{ env.changelog_updated }}" == "true" ]]; then
+            echo "::notice::OK: CHANGELOG.md has been updated"
+            export failBuild="false"
+          elif [[ "${{ env.changelog_updated }}" == "false" ]]; then
+            echo "::error::FAIL: CHANGELOG.md needs to be updated"
+            export failBuild="true"
+          fi
+
+          if [[ "${failBuild}" == "true" ]]; then
+            exit 1
+          fi
+
+  build-test-scan:
+    needs: [detect-changes]
+    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref != 'refs/heads/main' }}
+    name: Build and Test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ${{ fromJson(needs.detect-changes.outputs.images) }}
+        platform: [linux/amd64, linux/arm64]
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Set Up Google Container Structure Test
+        id: setup_container_structure_test
+        uses: ./.github/actions/setup-container-structure-test
+
+      - name: Set Up QEMU
+        id: setup_qemu
+        uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
+
+      - name: Set Up Docker Buildx
+        id: setup_docker_buildx
+        uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
+
+      - name: Build Image
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
+        with:
+          file: images/${{ matrix.image }}/Dockerfile
+          context: images/${{ matrix.image }}
+          platforms: ${{ matrix.platform }}
+          load: true
+          tags: ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
+
+      - name: Container Structure Test
+        id: container_structure_test
+        run: |
+          container-structure-test test \
+            --config images/${{ matrix.image }}/test/container-structure-test.yml \
+            --image ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
+
+      - name: Scan Image
+        id: scan_image
+        uses: aquasecurity/trivy-action@d43c1f16c00cfd3978dde6c07f4bbcf9eb6993ca # 0.16.1
+        with:
+          scan-type: image
+          image-ref: ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
+          exit-code: 1
+          severity: HIGH,CRITICAL
+          hide-progress: true
+
+  publish:
+    needs: [detect-changes]
+    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref == 'refs/heads/main' }}
+    name: Publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        image: ${{ fromJson(needs.detect-changes.outputs.images) }}
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Set Up QEMU
+        id: setup_qemu
+        uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
+
+      - name: Set Up Docker Buildx
+        id: setup_docker_buildx
+        uses: docker/setup-buildx-action@f95db51fddba0c2d1ec667646a06c2ce06100226 # v3.0.0
+
+      - name: Prepare Environment
+        id: prepare_environment
+        run: |
+          version=$(jq -r '.version' images/${{ matrix.image }}/config.json)
+          echo "version=${version}" >>"${GITHUB_ENV}"
+
+      - name: Publish Image
+        uses: docker/build-push-action@4a13e500e55cf31b7a5d59a38ab2040ab0f42f56 # v5.1.0
+        with:
+          file: images/${{ matrix.image }}/Dockerfile
+          context: images/${{ matrix.image }}
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ env.version }}
+            ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:latest

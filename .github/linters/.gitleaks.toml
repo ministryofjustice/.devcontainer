@@ -1,0 +1,9 @@
+title = "Gitleaks Configuration"
+
+[extend]
+useDefault = true
+
+[allowlist]
+    description = "Ignore # gitleaks-ignore lines"
+    regexTarget = "line"
+    regexes = ['''# gitleaks-ignore''']

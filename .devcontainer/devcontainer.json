@@ -5,5 +5,14 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
     "ghcr.io/devcontainers/features/node:1": {}
   },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "EditorConfig.EditorConfig",
+        "GitHub.vscode-github-actions",
+        "GitHub.vscode-pull-request-github"
+      ]
+    }
+  },
   "postCreateCommand": "npm install --global @devcontainers/cli"
 }
