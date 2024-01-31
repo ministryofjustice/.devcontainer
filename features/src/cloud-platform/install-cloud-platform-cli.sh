@@ -29,4 +29,4 @@ install --owner=vscode --group=vscode --mode=775 cloud-platform /usr/local/bin/c
 
 install --owner=vscode --group=vscode --mode=775 completions/cloud-platform.zsh /usr/local/share/zsh/site-functions/_cloud-platform
 
-rm --recursive --force LICENSE README.md completions cloud-platform-cli_${VERSION}_linux_${ARCHITECTURE}.tar.gz
+rm --recursive --force LICENSE README.md completions "cloud-platform-cli_${VERSION}_linux_${ARCHITECTURE}.tar.gz"
