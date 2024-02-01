@@ -11,12 +11,12 @@
     },
     "installCloudPlatformKubeconfig": {
       "type": "boolean",
-      "description": "Whether to install the Cloud Platform kubeconfig",
+      "description": "Wether to install the Cloud Platform kubeconfig",
       "default": true
     },
     "installCloudPlatformPrompt": {
       "type": "boolean",
-      "description": "Whether to install the Cloud Platform prompt",
+      "description": "Wether to install the Cloud Platform prompt",
       "default": true
     }
   },
