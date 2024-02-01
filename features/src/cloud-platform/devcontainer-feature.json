@@ -1,6 +1,6 @@
 {
   "id": "cloud-platform",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "Cloud Platform",
   "description": "Installs the Cloud Platform CLI",
   "options": {
@@ -8,6 +8,21 @@
       "type": "string",
       "description": "Version of the Cloud Platform CLI to install",
       "default": "latest"
+    },
+    "installCloudPlatformKubeconfig": {
+      "type": "boolean",
+      "description": "Wether to install the Cloud Platform kubeconfig",
+      "default": true
+    },
+    "installCloudPlatformPrompt": {
+      "type": "boolean",
+      "description": "Wether to install the Cloud Platform prompt",
+      "default": true
+    }
+  },
+  "dependsOn": {
+    "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes:0": {
+      "kubernetesCliVersion": "v1.26.13"
     }
   }
 }
