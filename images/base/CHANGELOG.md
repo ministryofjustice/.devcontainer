@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.3] - 2024-02-01
+
+### Added
+
+- Checkov skips for `CKV_DOCKER_2` and `CKV_DOCKER_3`
+
 ## [0.0.2] - 2024-01-31
 
 ### Changed
