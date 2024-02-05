@@ -1,6 +1,6 @@
 {
   "id": "kubernetes",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "Kubernetes",
   "description": "Installs the Kubernetes CLI",
   "options": {
@@ -8,6 +8,11 @@
       "type": "string",
       "description": "Version of the Kubernetes CLI to install",
       "default": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["ms-kubernetes-tools.vscode-kubernetes-tools"]
     }
   }
 }

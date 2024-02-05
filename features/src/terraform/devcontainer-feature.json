@@ -1,6 +1,6 @@
 {
   "id": "terraform",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "Terraform",
   "description": "Installs the Terraform CLI",
   "options": {
@@ -8,6 +8,11 @@
       "type": "string",
       "description": "Version of the Terraform CLI to install",
       "default": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["HashiCorp.terraform"]
     }
   }
 }
