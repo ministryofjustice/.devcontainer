@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.3] - 2024-02-01
+
+### Changed
+
+- Removed rogue `&&` from features/src/cloud-platform/src/home/vscode/.devcontainer/promptrc.d/cloud-platform.sh
+
+- Updates logic in Cloud Platform prompt
+
 ## [0.0.2] - 2024-01-31
 
 ### Added
