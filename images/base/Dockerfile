@@ -1,3 +1,6 @@
+#checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - This image is supervised by VS Code's Remote Containers extension
+#checkov:skip=CKV_DOCKER_3: USER not required - A non-root user is created, and used by VS Code's Remote Containers extension
+
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \

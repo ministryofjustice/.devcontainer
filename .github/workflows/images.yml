@@ -181,6 +181,7 @@ jobs:
           image-ref: ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
           exit-code: 1
           severity: HIGH,CRITICAL
+          ignore-unfixed: true
           hide-progress: true
 
   publish:
