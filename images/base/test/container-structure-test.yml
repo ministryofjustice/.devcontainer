@@ -17,6 +17,10 @@ commandTests:
     args: ["passwd", "vscode" ]
     expectedOutput: ["vscode:x:1000:1000::/home/vscode:/usr/bin/zsh"]
 
+  - name: "pip"
+    command: "pip"
+    args: ["--version"]
+
 fileExistenceTests:
   - name: "devcontainer-utils"
     path: "/usr/local/bin/devcontainer-utils"
