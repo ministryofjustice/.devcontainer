@@ -40,4 +40,6 @@ EOF
 ONBUILD RUN apt-get update --yes \
             && apt-get upgrade --yes \
             && apt-get clean --yes \
-            && rm --force --recursive /var/lib/apt/lists/*
+            && rm --force --recursive /var/lib/apt/lists/* \
+            && python3 -m pip install --no-cache-dir --upgrade \
+                 pip
