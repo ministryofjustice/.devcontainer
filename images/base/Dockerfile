@@ -1,7 +1,6 @@
 #checkov:skip=CKV_DOCKER_2: HEALTHCHECK not required - This image is supervised by VS Code's Remote Containers extension
 #checkov:skip=CKV_DOCKER_3: USER not required - A non-root user is created, and used by VS Code's Remote Containers extension
-# hadolint ignore=DL3008 Not pinning APT packages in base image
-# hadolint ignore=DL3013 Not pinning Python packages in base image
+# hadolint global ignore=DL3008,DL3013
 
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
 
