@@ -20,6 +20,12 @@ else
   VERSION_STRIP_V="${VERSION#v}"
 fi
 
+if [[ "${ARCHITECTURE}" == "amd64" ]]; then
+  ARCHITECTURE="64bit"
+elif [[ "${ARCHITECTURE}" == "arm64" ]]; then
+  ARCHITECTURE="ARM64"
+fi
+
 curl --fail-with-body --location "https://github.com/${GITHUB_REPOSITORY}/releases/download/${VERSION}/trivy_${VERSION_STRIP_V}_Linux-${ARCHITECTURE}.tar.gz" \
   --output "trivy_${VERSION_STRIP_V}_Linux-${ARCHITECTURE}.tar.gz"
 
