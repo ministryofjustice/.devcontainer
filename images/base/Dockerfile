@@ -25,7 +25,8 @@ RUN apt-get update --yes \
     && chsh --shell "$(which zsh)" vscode \
     && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer \
     && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/featurerc.d \
-    && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/promptrc.d
+    && install --directory --owner=vscode --group=vscode /home/vscode/.devcontainer/promptrc.d \
+    && install --directory --owner=vscode --group=vscode /home/vscode/.dotfiles
 
 RUN cat <<EOF >> /home/vscode/.zshrc
 
@@ -36,6 +37,12 @@ if [ "\$(ls -A /home/vscode/.devcontainer/featurerc.d)" ]; then
   done
 fi
 
+# dotfiles (running locally)
+if [ -z "\${CODESPACES}" ] && [ "\$(ls -A /home/vscode/.dotfiles)" ]; then
+  for file in /home/vscode/.dotfiles/*.sh; do
+    source "\${file}"
+  done
+fi
 EOF
 
 ONBUILD RUN apt-get update --yes \
