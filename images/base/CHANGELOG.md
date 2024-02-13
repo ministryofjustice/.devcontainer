@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Automatically source `.sh` files in `/home/vscode/.dotfiles` 
+- Automatically source `.sh` files in `/home/vscode/.dotfiles`
 
 ## [0.0.4] - 2024-02-08
 
