@@ -1,0 +1,18 @@
+{
+  "id": "static-analysis",
+  "version": "0.0.1",
+  "name": "Static Analysis",
+  "description": "Installs Checkov and Trivy",
+  "options": {
+    "checkovVersion": {
+      "type": "string",
+      "description": "Version of Checkov CLI to install",
+      "default": "latest"
+    },
+    "trivyVersion": {
+      "type": "string",
+      "description": "Version of Trivy CLI to install",
+      "default": "latest"
+    }
+  }
+}
