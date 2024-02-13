@@ -37,8 +37,8 @@ if [ "\$(ls -A /home/vscode/.devcontainer/featurerc.d)" ]; then
   done
 fi
 
-# dotfiles
-if [ -z "\${CODESPACES}" ]; then
+# dotfiles (running locally)
+if [ -z "\${CODESPACES}" ] && [ "\$(ls -A /home/vscode/.dotfiles)" ]; then
   for file in /home/vscode/.dotfiles/*.sh; do
     source "\${file}"
   done
