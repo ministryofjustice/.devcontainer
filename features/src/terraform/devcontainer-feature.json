@@ -1,6 +1,6 @@
 {
   "id": "terraform",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "name": "Terraform",
   "description": "Installs the Terraform CLI",
   "options": {
@@ -12,7 +12,22 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": ["HashiCorp.terraform"]
+      "extensions": ["HashiCorp.terraform"],
+      "files.associations": {
+        "*.hcl": "terraform"
+      },
+      "settings": {
+        "[terraform]": {
+          "editor.defaultFormatter": "hashicorp.terraform",
+          "editor.formatOnSave": true,
+          "editor.formatOnSaveMode": "file"
+        },
+        "[terraform-vars]": {
+          "editor.defaultFormatter": "hashicorp.terraform",
+          "editor.formatOnSave": true,
+          "editor.formatOnSaveMode": "file"
+        }
+      }
     }
   }
 }
