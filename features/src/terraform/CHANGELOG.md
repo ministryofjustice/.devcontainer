@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.4] - 2024-03-25
+
+### Added
+
+- Included settings to automatically format `terraform` and `terraform-vars` on save
+
 ## [0.0.3] - 2024-02-01
 
 ### Added
