@@ -1,0 +1,16 @@
+{
+  "id": "container-structure-test",
+  "version": "0.0.1",
+  "name": "Container Structure Test",
+  "description": "Installs Container Structure Test",
+  "options": {
+    "containerStructureTestVersion": {
+      "type": "string",
+      "description": "Version of Container Structure Test to install",
+      "default": "latest"
+    }
+  },
+  "dependsOn": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  }
+}
