@@ -6,7 +6,7 @@ inputs:
   version:
     description: The version of Container Structure Test to install.
     required: false
-    default: "1.16.0"
+    default: "latest"
 
 runs:
   using: "composite"
@@ -30,7 +30,7 @@ runs:
 
         mkdir --parents "${GITHUB_WORKSPACE}/.google-container-structure-test"
 
-        curl --location --silent --show-error --fail "https://storage.googleapis.com/container-structure-test/v${version}/container-structure-test-linux-${architecture}" \
+        curl --location --silent --show-error --fail "https://storage.googleapis.com/container-structure-test/${version}/container-structure-test-linux-${architecture}" \
           --output "${GITHUB_WORKSPACE}/.google-container-structure-test/container-structure-test"
 
         chmod +x "${GITHUB_WORKSPACE}/.google-container-structure-test/container-structure-test"
