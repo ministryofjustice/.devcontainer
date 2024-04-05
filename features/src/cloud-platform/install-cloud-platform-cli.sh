@@ -39,4 +39,4 @@ if [[ "${INSTALL_CLOUD_PLATFORM_PROMPT}" == "true" ]]; then
   install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/promptrc.d/cloud-platform.sh /home/vscode/.devcontainer/promptrc.d/cloud-platform.sh
 fi
 
-rm --recursive --force LICENSE README.md completions "cloud-platform-cli_${VERSION}_linux_${ARCHITECTURE}.tar.gz"
+rm --recursive --force cloud-platform LICENSE README.md completions "cloud-platform-cli_${VERSION}_linux_${ARCHITECTURE}.tar.gz"

@@ -24,3 +24,5 @@ curl --fail-with-body --location "https://github.com/${GITHUB_REPOSITORY}/releas
   --output "container-structure-test"
 
 install --owner=vscode --group=vscode --mode=775 container-structure-test /usr/local/bin/container-structure-test
+
+rm --force container-structure-test

@@ -1,12 +1,17 @@
 {
   "id": "static-analysis",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "name": "Static Analysis",
-  "description": "Installs Checkov and Trivy",
+  "description": "Installs Checkov, Terrascan and Trivy",
   "options": {
     "checkovVersion": {
       "type": "string",
       "description": "Version of Checkov CLI to install",
+      "default": "latest"
+    },
+    "terrascanVersion": {
+      "type": "string",
+      "description": "Version of Terrascan CLI to install",
       "default": "latest"
     },
     "trivyVersion": {
