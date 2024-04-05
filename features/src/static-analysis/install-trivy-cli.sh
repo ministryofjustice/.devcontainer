@@ -33,4 +33,4 @@ tar --extract --file "trivy_${VERSION_STRIP_V}_Linux-${ARCHITECTURE}.tar.gz"
 
 install --owner=vscode --group=vscode --mode=775 trivy /usr/local/bin/trivy
 
-rm --recursive --force rm -rf LICENSE README.md contrib "trivy_${VERSION_STRIP_V}_Linux-${ARCHITECTURE}.tar.gz"
+rm --recursive --force rm -rf trivy LICENSE README.md contrib "trivy_${VERSION_STRIP_V}_Linux-${ARCHITECTURE}.tar.gz"

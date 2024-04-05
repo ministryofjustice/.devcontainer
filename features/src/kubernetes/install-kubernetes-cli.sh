@@ -22,3 +22,5 @@ install --owner=vscode --group=vscode --mode=775 kubectl /usr/local/bin/kubectl
 install --directory --owner=vscode --group=vscode /home/vscode/.kube
 
 install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/kubectl.sh /home/vscode/.devcontainer/featurerc.d/kubectl.sh
+
+rm --force kubectl
