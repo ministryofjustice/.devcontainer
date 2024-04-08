@@ -139,19 +139,10 @@ jobs:
       fail-fast: false
       matrix:
         feature: ${{ fromJson(needs.detect-changes.outputs.features) }}
-        platform: [linux/amd64, linux/arm64]
     steps:
       - name: Checkout
         id: checkout
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
-
-      - name: Set Up QEMU
-        id: setup_qemu
-        uses: docker/setup-qemu-action@68827325e0b33c7199eb31dd4e31fbe9023e06e3 # v3.0.0
-
-      - name: Set Up Docker Buildx
-        id: setup_docker_buildx
-        uses: docker/setup-buildx-action@2b51285047da1547ffb1b2203d8be4c0af6b1f20 # v3.2.0
 
       - name: Install @devcontainers/cli
         id: install_devcontainers_cli
@@ -163,7 +154,6 @@ jobs:
         with:
           file: images/base/Dockerfile
           context: images/base
-          platforms: ${{ matrix.platform }}
           load: true
           tags: ghcr.io/ministryofjustice/devcontainer-base:local-feature-test-${{ github.sha }}
 
