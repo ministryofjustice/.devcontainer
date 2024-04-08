@@ -20,8 +20,11 @@ else
   VERSION_STRIP_V="${VERSION#v}"
 fi
 
-ARCHITECTURE=$(uname --machine)
-export ARCHITECTURE
+if [[ "${ARCHITECTURE}" == "amd64" ]]; then
+  ARCHITECTURE="x86_64"
+else
+  ARCHITECTURE="arm64"
+fi
 
 curl --fail-with-body --location "https://github.com/${GITHUB_REPOSITORY}/releases/download/${VERSION}/terrascan_${VERSION_STRIP_V}_Linux_${ARCHITECTURE}.tar.gz" \
   --output "terrascan_${VERSION_STRIP_V}_Linux_${ARCHITECTURE}.tar.gz"

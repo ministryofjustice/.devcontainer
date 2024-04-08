@@ -11,9 +11,9 @@ get_system_architecture
 VERSION="${AWSCLIVERSION:-"latest"}"
 
 if [[ "${VERSION}" == "latest" ]]; then
-  ARTEFACT="awscli-exe-linux-$(uname -m).zip"
+  ARTEFACT="awscli-exe-linux-$(uname --machine).zip"
 else
-  ARTEFACT="awscli-exe-linux-$(uname -m)-${VERSION}.zip"
+  ARTEFACT="awscli-exe-linux-$(uname --machine)-${VERSION}.zip"
 fi
 
 curl --fail-with-body --location "https://awscli.amazonaws.com/${ARTEFACT}" \

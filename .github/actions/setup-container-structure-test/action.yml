@@ -13,12 +13,12 @@ runs:
   steps:
     - shell: bash
       run: |
-        if [[ "$(uname -m)" == "x86_64" ]]; then
+        if [[ "$(uname --machine)" == "x86_64" ]]; then
           export architecture="amd64"
-        elif [[ "$(uname -m)" == "aarch64" ]]; then
+        elif [[ "$(uname --machine)" == "aarch64" ]]; then
           export architecture="arm64"
         else
-          echo "Unsupported architecture: $(uname -m)"
+          echo "Unsupported architecture: $(uname --machine)"
           exit 1
         fi
 

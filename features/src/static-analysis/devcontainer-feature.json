@@ -1,6 +1,6 @@
 {
   "id": "static-analysis",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "name": "Static Analysis",
   "description": "Installs Checkov, Terrascan and Trivy",
   "options": {
