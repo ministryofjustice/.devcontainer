@@ -170,6 +170,7 @@ jobs:
         id: container_structure_test
         run: |
           container-structure-test test \
+            --platform ${{ matrix.platform }} \
             --config images/${{ matrix.image }}/test/container-structure-test.yml \
             --image ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
 
