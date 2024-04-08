@@ -145,7 +145,7 @@ jobs:
         id: checkout
         uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
 
-      - name: Set Up Google Container Structure Test
+      - name: Set Up Container Structure Test
         id: setup_container_structure_test
         uses: ministryofjustice/github-actions/setup-container-structure-test@bdab1cff6d23336b6d5adc662fb57af72f0ae160 # v17.1.0
 
