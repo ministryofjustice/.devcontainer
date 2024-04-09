@@ -30,7 +30,7 @@ logger() {
 }
 
 get_system_architecture() {
-  systemArchitecture="$(uname -m)"
+  systemArchitecture="$(uname --machine)"
   export systemArchitecture
 
   case ${systemArchitecture} in
