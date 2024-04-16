@@ -10,6 +10,8 @@ get_system_architecture
 
 GITHUB_REPOSITORY="helm/chart-testing"
 VERSION="${HELMCTCLIVERSION:-"latest"}"
+YAMALE_VERSION="5.1.0"
+YAMLLINT_VERSION="1.35.1"
 
 if [[ "${VERSION}" == "latest" ]]; then
   get_github_latest_tag "${GITHUB_REPOSITORY}"
@@ -34,3 +36,5 @@ install --owner=vscode --group=vscode --mode=644 etc/chart_schema.yaml /home/vsc
 install --owner=vscode --group=vscode --mode=644 etc/lintconf.yaml /home/vscode/.ct/lintconf.yaml
 
 rm --recursive --force ct LICENSE README.md etc/chart_schema.yaml etc/lintconf.yaml "chart-testing_${VERSION_STRIP_V}_linux_${ARCHITECTURE}.tar.gz"
+
+pip_install "yamale==${YAMALE_VERSION}" "yamllint==${YAMLLINT_VERSION}"
