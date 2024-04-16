@@ -1,12 +1,22 @@
 {
   "id": "kubernetes",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "name": "Kubernetes",
-  "description": "Installs the Kubernetes CLI",
+  "description": "Installs the Kubernetes CLI, Helm CLI and Helm Chart Testing CLI",
   "options": {
     "kubernetesCliVersion": {
       "type": "string",
       "description": "Version of the Kubernetes CLI to install",
+      "default": "latest"
+    },
+    "helmCliVersion": {
+      "type": "string",
+      "description": "Version of the Helm CLI to install",
+      "default": "latest"
+    },
+    "helmCtCliVersion": {
+      "type": "string",
+      "description": "Version of the Helm Chart Testing CLI to install",
       "default": "latest"
     }
   },
