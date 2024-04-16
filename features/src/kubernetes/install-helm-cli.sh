@@ -25,10 +25,10 @@ curl --fail-with-body --location "https://get.helm.sh/helm-${VERSION}-linux-${AR
 
 tar --extract --file "helm-${VERSION}-linux-${ARCHITECTURE}.tar.gz"
 
-install --owner=vscode --group=vscode --mode=775 linux-${ARCHITECTURE}/helm /usr/local/bin/helm
+install --owner=vscode --group=vscode --mode=775 "linux-${ARCHITECTURE}/helm" /usr/local/bin/helm
 
 install --directory --owner=vscode --group=vscode /home/vscode/.config/helm
 
 install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/helm.sh /home/vscode/.devcontainer/featurerc.d/helm.sh
 
-rm --recursive --force linux-${ARCHITECTURE} helm-${VERSION}-linux-${ARCHITECTURE}.tar.gz
+rm --recursive --force "linux-${ARCHITECTURE}" "helm-${VERSION}-linux-${ARCHITECTURE}.tar.gz"

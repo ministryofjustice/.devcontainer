@@ -33,4 +33,4 @@ install --owner=vscode --group=vscode --mode=644 etc/chart_schema.yaml /home/vsc
 
 install --owner=vscode --group=vscode --mode=644 etc/lintconf.yaml /home/vscode/.ct/lintconf.yaml
 
-rm --recursive --force ct LICENSE README.md etc/chart_schema.yaml etc/lintconf.yaml chart-testing_${VERSION_STRIP_V}_linux_${ARCHITECTURE}.tar.gz
+rm --recursive --force ct LICENSE README.md etc/chart_schema.yaml etc/lintconf.yaml "chart-testing_${VERSION_STRIP_V}_linux_${ARCHITECTURE}.tar.gz"
