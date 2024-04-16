@@ -37,4 +37,5 @@ install --owner=vscode --group=vscode --mode=644 etc/lintconf.yaml /home/vscode/
 
 rm --recursive --force ct LICENSE README.md etc/chart_schema.yaml etc/lintconf.yaml "chart-testing_${VERSION_STRIP_V}_linux_${ARCHITECTURE}.tar.gz"
 
-pip_install "yamale==${YAMALE_VERSION}" "yamllint==${YAMLLINT_VERSION}"
+pip_install "yamale==${YAMALE_VERSION}"
+pip_install "yamllint==${YAMLLINT_VERSION}"
