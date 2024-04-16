@@ -13,5 +13,7 @@ check "helm featurerc existence" stat /home/vscode/.devcontainer/featurerc.d/hel
 check "helm ct version" ct version
 check "helm chart_schema.yaml existence" stat /home/vscode/.ct/chart_schema.yaml
 check "helm lintconf.yaml existence" stat /home/vscode/.ct/lintconf.yaml
+check "yamale version" yamale --version
+check "yamllint version" yamllint --version
 
 reportResults

@@ -1,6 +1,6 @@
 {
   "id": "kubernetes",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "name": "Kubernetes",
   "description": "Installs the Kubernetes CLI, Helm CLI and Helm Chart Testing CLI",
   "options": {
