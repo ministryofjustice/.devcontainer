@@ -1,0 +1,13 @@
+# dev container feature completion scripts
+if [ "$(ls -A /home/vscode/.devcontainer/featurerc.d)" ]; then
+  for file in /home/vscode/.devcontainer/featurerc.d/*.sh; do
+    source "${file}"
+  done
+fi
+
+# dotfiles (running locally)
+if [ -z "${CODESPACES}" ] && [ "$(ls -A /home/vscode/.dotfiles)" ]; then
+  for file in /home/vscode/.dotfiles/*.sh; do
+    source "${file}"
+  done
+fi

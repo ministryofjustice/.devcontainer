@@ -8,6 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-04-16
+
+### Changed
+
+- Updated Dockerfile syntax
+
+- Switch to using snippets instead of inline HereDoc
+
 ## [0.0.6] - 2024-04-08
 
 ### Changed
