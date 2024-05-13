@@ -1,12 +1,16 @@
 {
   "id": "terraform",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "name": "Terraform",
+  "documentationURL": "https://github.com/ministryofjustice/.devcontainer/tree/main/features/src/terraform",
   "description": "Installs the Terraform CLI",
   "options": {
     "terraformCliVersion": {
       "type": "string",
       "description": "Version of the Terraform CLI to install",
+      "proposals": [
+        "latest"
+      ],
       "default": "latest"
     }
   },
