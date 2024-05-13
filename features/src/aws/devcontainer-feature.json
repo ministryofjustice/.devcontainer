@@ -1,18 +1,32 @@
 {
   "id": "aws",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "name": "AWS",
+  "documentationURL": "https://github.com/ministryofjustice/.devcontainer/tree/main/features/src/aws",
   "description": "Installs the AWS CLI and AWS SSO CLI",
   "options": {
     "awsCliVersion": {
       "type": "string",
       "description": "Version of the AWS CLI to install",
+      "proposals": [
+        "latest"
+      ],
       "default": "latest"
     },
     "awsSsoCliVersion": {
       "type": "string",
-      "description": "Version of AWS SSO CLI to install",
+      "description": "Version of the AWS SSO CLI to install",
+      "proposals": [
+        "latest"
+      ],
       "default": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "AmazonWebServices.aws-toolkit-vscode"
+      ]
     }
   }
 }

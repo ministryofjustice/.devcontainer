@@ -29,11 +29,13 @@ install --directory --owner=vscode --group=vscode /home/vscode/.aws-sso
 
 install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.aws-sso/config.yaml /home/vscode/.aws-sso/config.yaml
 
-install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/aws-sso.sh /home/vscode/.devcontainer/featurerc.d/aws-sso.sh
+install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/aws-sso-cli.sh /home/vscode/.devcontainer/featurerc.d/aws-sso-cli.sh
 
-install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/promptrc.d/aws-sso.sh /home/vscode/.devcontainer/promptrc.d/aws-sso.sh
+install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/promptrc.d/aws-sso-cli.sh /home/vscode/.devcontainer/promptrc.d/aws-sso-cli.sh
 
-awsSsoFilePassword=$(openssl rand -base64 48 | tr -dc 'a-zA-Z0-9' | cut -c -32)
+awsSsoFilePassword=$(openssl rand -hex 32)
 export awsSsoFilePassword
 
-sed --in-place "s/REPLACE_ME/${awsSsoFilePassword}/g" /home/vscode/.devcontainer/featurerc.d/aws-sso.sh
+sed --in-place "s/REPLACE_ME/${awsSsoFilePassword}/g" /home/vscode/.devcontainer/featurerc.d/aws-sso-cli.sh
+
+rm --force aws-sso

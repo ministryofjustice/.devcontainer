@@ -23,6 +23,6 @@ unzip "${ARTEFACT}"
 
 bash ./aws/install
 
-rm --recursive --force aws "${ARTEFACT}"
+install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/aws-cli.sh /home/vscode/.devcontainer/featurerc.d/aws-cli.sh
 
-install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/aws.sh /home/vscode/.devcontainer/featurerc.d/aws.sh
+rm --recursive --force aws "${ARTEFACT}"

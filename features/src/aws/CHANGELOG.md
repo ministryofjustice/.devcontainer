@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-05-13
+
+- Added AWS SSO CLI completion
+
+### Changed
+
 ## [0.0.3] - 2024-04-08
 
 ### Changed
