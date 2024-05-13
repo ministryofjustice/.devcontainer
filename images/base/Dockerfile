@@ -2,7 +2,7 @@
 #checkov:skip=CKV_DOCKER_3: USER not required - A non-root user is created, and used by VS Code's Remote Containers extension
 # hadolint global ignore=DL3008,DL3013
 
-FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Dev Container Community" \
@@ -22,15 +22,12 @@ apt-get update --yes
 
 apt-get upgrade --yes
 
-apt-get install --yes --no-install-recommends \
+apt-get install --yes \
   python3-pip
 
 apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
-
-python3 -m pip install --no-cache-dir --upgrade \
-  pip
 
 chsh --shell "$(which zsh)" vscode
 
@@ -56,7 +53,4 @@ apt-get upgrade --yes
 apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
-
-python3 -m pip install --no-cache-dir --upgrade \
-  pip
 EOF
