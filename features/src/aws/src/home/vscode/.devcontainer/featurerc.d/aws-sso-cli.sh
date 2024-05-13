@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2046,SC2086
 
 export AWS_SSO_FILE_PASSWORD="REPLACE_ME" # gitleaks-ignore
 
