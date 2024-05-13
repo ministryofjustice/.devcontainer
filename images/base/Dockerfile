@@ -22,15 +22,12 @@ apt-get update --yes
 
 apt-get upgrade --yes
 
-apt-get install --yes --no-install-recommends \
+apt-get install --yes \
   python3-pip
 
 apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
-
-python3 -m pip install --no-cache-dir --upgrade \
-  pip
 
 chsh --shell "$(which zsh)" vscode
 
@@ -56,7 +53,4 @@ apt-get upgrade --yes
 apt-get clean --yes
 
 rm --force --recursive /var/lib/apt/lists/*
-
-python3 -m pip install --no-cache-dir --upgrade \
-  pip
 EOF
