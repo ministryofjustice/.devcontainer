@@ -1,0 +1,23 @@
+---
+collapsible_nav: true
+default_owner_slack: "#devcontainer-community"
+enable_search: true
+footer_links:
+  Platform Status: https://status.observability-platform.service.justice.gov.uk
+full_service_name: Dev Container User Guide
+github_branch: main
+github_repo: ministryofjustice/.devcontainer
+header_links:
+  GitHub: https://github.com/ministryofjustice/.devcontainer
+  Slack: https://moj.enterprise.slack.com/archives/C06DZ4F04JZ
+host: https://user-guide.devcontainer.service.justice.gov.uk
+max_toc_heading_level: 3
+owner_slack_workspace: mojdt
+phase: prototype
+prevent_indexing: true
+service_link: /
+service_name: Dev Container User Guide
+show_contribution_banner: true
+show_expiry: true
+show_govuk_logo: false
+show_review_banner: true
