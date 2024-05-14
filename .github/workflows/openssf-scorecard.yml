@@ -1,47 +1,47 @@
 ---
-  name: OpenSSF Scorecard
+name: OpenSSF Scorecard
 
-  on:
-    branch_protection_rule:
-    push:
-      branches:
-        - main
-    schedule:
-      - cron: "30 6 * * 1"
-    workflow_dispatch:
+on:
+  branch_protection_rule:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "30 6 * * 1"
+  workflow_dispatch:
 
-  permissions: {}
+permissions: {}
 
-  jobs:
-    openssf-scorecard:
-      name: OpenSSF Scorecard
-      runs-on: ubuntu-latest
-      permissions:
-        id-token: write
-        security-events: write
-      steps:
-        - name: Checkout
-          id: checkout
-          uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+jobs:
+  openssf-scorecard:
+    name: OpenSSF Scorecard
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      security-events: write
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
 
-        - name: Run Analysis
-          id: run_analysis
-          uses: ossf/scorecard-action@0864cf19026789058feabb7e87baa5f140aac736 # v2.3.1
-          with:
-            results_file: results.sarif
-            results_format: sarif
-            publish_results: true
+      - name: Run Analysis
+        id: run_analysis
+        uses: ossf/scorecard-action@0864cf19026789058feabb7e87baa5f140aac736 # v2.3.1
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          publish_results: true
 
-        - name: Upload SARIF
-          id: upload_sarif
-          uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
-          with:
-            name: SARIF Results
-            path: results.sarif
-            retention-days: 5
+      - name: Upload SARIF
+        id: upload_sarif
+        uses: actions/upload-artifact@5d5d22a31266ced268874388b861e4b58bb5c2f3 # v4.3.1
+        with:
+          name: SARIF Results
+          path: results.sarif
+          retention-days: 5
 
-        - name: Upload to CodeQL
-          id: upload_to_codeql
-          uses: github/codeql-action/upload-sarif@df5a14dc28094dc936e103b37d749c6628682b60 # v3.25.0
-          with:
-            sarif_file: results.sarif
+      - name: Upload to CodeQL
+        id: upload_to_codeql
+        uses: github/codeql-action/upload-sarif@df5a14dc28094dc936e103b37d749c6628682b60 # v3.25.0
+        with:
+          sarif_file: results.sarif
