@@ -20,6 +20,11 @@
         "latest"
       ],
       "default": "latest"
+    },
+    "installAwsSsoCliPrompt": {
+      "type": "boolean",
+      "description": "Whether to install the AWS SSO CLI prompt",
+      "default": true
     }
   },
   "customizations": {

@@ -10,6 +10,7 @@ get_system_architecture
 
 GITHUB_REPOSITORY="synfinatic/aws-sso-cli"
 VERSION="${AWSVAULTVERSION:-"latest"}"
+INSTALL_PROMPT="${INSTALLAWSSSOCLIPROMPT:-"true"}"
 
 if [[ "${VERSION}" == "latest" ]]; then
   get_github_latest_tag "${GITHUB_REPOSITORY}"
@@ -31,7 +32,9 @@ install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vs
 
 install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/aws-sso-cli.sh /home/vscode/.devcontainer/featurerc.d/aws-sso-cli.sh
 
-install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/promptrc.d/aws-sso-cli.sh /home/vscode/.devcontainer/promptrc.d/aws-sso-cli.sh
+if [[ "${INSTALL_PROMPT}" == "true" ]]; then
+  install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/promptrc.d/aws-sso-cli.sh /home/vscode/.devcontainer/promptrc.d/aws-sso-cli.sh
+fi
 
 awsSsoFilePassword=$(openssl rand -hex 32)
 export awsSsoFilePassword
