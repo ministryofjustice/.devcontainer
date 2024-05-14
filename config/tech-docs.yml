@@ -13,7 +13,7 @@ header_links:
 host: https://user-guide.devcontainer.service.justice.gov.uk
 max_toc_heading_level: 3
 owner_slack_workspace: mojdt
-phase: prototype
+phase: internal
 prevent_indexing: true
 service_link: /
 service_name: Development Container User Guide
