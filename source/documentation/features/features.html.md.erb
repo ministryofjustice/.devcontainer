@@ -11,7 +11,7 @@ weight: 0
 
 In the context of the Ministry of Justice Dev Containers community, features are built by the community to satisfy the specific needs of our developers and the challenges they face on a day to day basis.
 
-Features in the wider Dev Containers community are described [here](https://containers.dev/features) both can be consumed when constructing a Dev Container.
+Features created in the Dev Container community are described [here](https://containers.dev/features) both can be consumed when constructing a Dev Container. From this point on, we will refer to these features as "Community Features" and Ministry of Justice feature as "Features".
 
 Features are built using the [.devcontainer](https.//github.com/ministryofjustice/.devcontainer/features/test) GitHub repository and are designed to be modular and reusable. This means that features can be combined to create a custom development environment that meets the needs of a specific project or team.
 
@@ -23,23 +23,30 @@ Features are located in the [features](https.//github.com/ministryofjustice/.dev
 
 ### AWS
 
-The AWS feature provides a development environment with the AWS CLI and SDKs pre-installed.
+The AWS feature installs the [AWS CLI](https://aws.amazon.com/cli/) and [AWS SSO CLI](https://github.com/synfinatic/aws-sso-cli) .
 
-### Cloud Platform
+### Cloud Platform
 
-The Cloud Platform feature provides a development environment with
+The Cloud Platform feature installs the [Cloud Platform CLI](https://user-guide.cloud-platform.service.justice.gov.uk/documentation/getting-started/cloud-platform-cli.html).
 
-### Container Structure Test
+### Container Structure Tests
 
-The Container Structure Test feature
+The Container Structure Tests feature installs the [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test) CLI, this tool provides a powerful framework to validate the structure of a container image.
 
 ### Kubernetes
 
+The Kubernetes feature installs:
+
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/) - to interact with Kubernetes clusters
+
+- [helm](https://helm.sh/docs/intro/install/) - the package manager for Kubernetes
+
+- [ct](https://github.com/helm/chart-testing) - to lint and test Helm charts
+
+
 ### Static Analysis
 
-The Static Analysis feature provides a development environment with static analysis tools pre-installed.
-
-The tools include:
+The Static Analysis feature installs:
 
 - [checkov](https://www.checkov.io/)
 
@@ -49,12 +56,18 @@ The tools include:
 
 ### Terraform
 
-The Terraform feature provides a development environment with the Terraform CLI pre-installed.
+The Terraform feature installs the [`terraform`](https://developer.hashicorp.com/terraform/cli/commands) CLI.
 
-## Adding a New Features
+## Adding a Feature to a Dev Container
+
+To add a feature to an existing Dev Container:
+
+
+
+## Creating a New Feature
 
 To add a new feature:
 
 1. Create a new feature in the [.devcontainer](https.//github.com/ministryofjustice/.devcontainer/features/src) GitHub repository.
-1. Add the feature to the [Dev Containers Features](/documentation/features/features.html) documentation.
+1. Add the feature to the Dev Containers [Features](/documentation/features/features.html) documentation.
 1. Add tests for the feature in the [.devcontainer](https.//github.com/ministryofjustice/.devcontainer/features/test) GitHub repository.
