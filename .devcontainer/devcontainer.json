@@ -16,7 +16,7 @@
         "files.associations": {
           "*.html.md.erb": "markdown"
         }
-      },
+      }
     }
   },
   "postCreateCommand": "npm install --global @devcontainers/cli"
