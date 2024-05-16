@@ -13,13 +13,13 @@ In the context of the Ministry of Justice Development Container community, featu
 
 Features created in the Dev Container community are described [here](https://containers.dev/features) both can be consumed when constructing a Dev Container. From this point on, we will refer to these features as "Community Features" and Ministry of Justice feature as "Features".
 
-Features are built using the [.devcontainer](https.//github.com/ministryofjustice/.devcontainer/features/test) GitHub repository and are designed to be modular and reusable. This means that features can be combined to create a custom development environment that meets the needs of a specific project or team.
+Features are built using the [.devcontainer](https://github.com/ministryofjustice/.devcontainer/features/test) GitHub repository and are designed to be modular and reusable. This means that features can be combined to create a custom development environment that meets the needs of a specific project or team.
 
 Features are can be used by Sofware Developers and those in Operations Roles to create consistent and reliable development environments for the applications and services they work on.
 
 ## Ministry of Justice Features
 
-Features are located in the [features](https.//github.com/ministryofjustice/.devcontainer/features/src) folder in the Development Container GitHub repository.
+Features are located in the [features](https://github.com/ministryofjustice/.devcontainer/tree/main/features/src) folder in the Development Container GitHub repository.
 
 ### AWS
 
@@ -58,16 +58,28 @@ The Static Analysis feature installs:
 
 The Terraform feature installs the [`terraform`](https://developer.hashicorp.com/terraform/cli/commands) CLI.
 
-## Adding a Feature to a Dev Container
+## Adding a Feature to a Development Container
 
-To add a feature to an existing Dev Container:
+To add a feature to a Development Container:
 
+```json
+{
+  ...
+  "features": {
+    "ghcr.io/ministryofjustice/devcontainer-feature/container-structure-test:0": {},
+    "ghcr.io/ministryofjustice/devcontainer-feature/static-analysis:0": {}
+  }
+  ...
+}
+```
 
+More information is available in the [Getting Started](../getting-started/getting-started.html) section of this guidance.
 
 ## Creating a New Feature
 
 To add a new feature:
 
-1. Create a new feature in the [.devcontainer](https.//github.com/ministryofjustice/.devcontainer/features/src) GitHub repository.
+1. Clone the `.devcontainer` [repository](https://github.com/ministryofjustice/.devcontainer/).
+1. Create a new feature in the [.devcontainer](https://github.com/ministryofjustice/.devcontainer/features/src) GitHub repository.
 1. Add the feature to the Development Container [Features](/documentation/features/features.html) documentation.
-1. Add tests for the feature in the [.devcontainer](https.//github.com/ministryofjustice/.devcontainer/features/test) GitHub repository.
+1. Add tests for the feature in the [.devcontainer](https://github.com/ministryofjustice/.devcontainer/features/test) GitHub repository.

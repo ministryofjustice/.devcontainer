@@ -7,6 +7,42 @@ weight: 0
 
 # <%= current_page.data.title %>
 
+Official documentation is located [here](https://code.visualstudio.com/docs/devcontainers/create-dev-container).
+
 ## Adding a Development Container to a Project
 
 1. Create a `.devcontainer` folder in the root of your project.
+1. Add a `devcontainer.json` file to the `.devcontainer` folder.
+There are a number of parameters which can be included in a devconatiner.json file, these are noted in detail [here](https://containers.dev/implementors/json_reference/).
+1. Populate the `devcontainer.json` file with the required settings:
+
+```json
+{
+  "name": "devcontainer-example",
+  "image": "ghcr.io/ministryofjustice/devcontainer-base:latest"
+}
+```
+
+In the example above, the `name` parameter specifies the name of the development container, and the `image` parameter specifies the base image for the development container.
+
+The `ghcr.io/ministryofjustice/devcontainer-base` image is an extension of `mcr.microsoft.com/devcontainers/base:ubuntu-24.04`. The enhancements are documented [here](https://github.com/ministryofjustice/.devcontainer/blob/main/images/base/Dockerfile).
+
+## Consuming Ministry of Justice Features
+
+Ministry of Justice Features are described [here](../features/features.html).
+
+To consume a feature, add the feature to the `features` array in the `devcontainer.json` file. An example of this is shown below:
+
+```json
+{
+  "name": "devcontainer-example",
+  "image": "ghcr.io/ministryofjustice/devcontainer-base:latest",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/ministryofjustice/devcontainer-feature/container-structure-test:0": {},
+    "ghcr.io/ministryofjustice/devcontainer-feature/static-analysis:0": {}
+  }
+}
+```
+
+In the example above, the `features` array includes the `docker-in-docker`, `container-structure-test`, and `static-analysis` features. Note that the `docker-in-docker` feature is a community feature, while the other two features are Ministry of Justice features. Both types of features can be consumed in the same way.

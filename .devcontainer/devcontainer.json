@@ -11,7 +11,12 @@
         "EditorConfig.EditorConfig",
         "GitHub.vscode-github-actions",
         "GitHub.vscode-pull-request-github"
-      ]
+      ],
+      "settings": {
+        "files.associations": {
+          "*.html.md.erb": "markdown"
+        }
+      },
     }
   },
   "postCreateCommand": "npm install --global @devcontainers/cli"
