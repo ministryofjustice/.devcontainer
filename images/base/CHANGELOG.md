@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2024-05-13
+
+### Changed
+
+- Updated image to Ubuntu 24.04
+- Updated references to `1000`, `vscode` user is now `1001`
+
 ## [1.0.0] - 2024-04-16
 
 ### Changed
