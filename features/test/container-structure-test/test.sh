@@ -9,5 +9,4 @@ source dev-container-features-test-lib
 check "container-stucture-test version" container-structure-test version
 check "container-stucture-test featurerc existence" stat /home/vscode/.devcontainer/featurerc.d/container-structure-test-cli.sh
 
-
 reportResults
