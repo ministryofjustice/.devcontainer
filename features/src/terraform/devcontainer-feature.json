@@ -8,9 +8,7 @@
     "terraformCliVersion": {
       "type": "string",
       "description": "Version of the Terraform CLI to install",
-      "proposals": [
-        "latest"
-      ],
+      "proposals": ["latest"],
       "default": "latest"
     }
   },

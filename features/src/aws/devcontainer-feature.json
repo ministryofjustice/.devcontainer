@@ -8,17 +8,13 @@
     "awsCliVersion": {
       "type": "string",
       "description": "Version of the AWS CLI to install",
-      "proposals": [
-        "latest"
-      ],
+      "proposals": ["latest"],
       "default": "latest"
     },
     "awsSsoCliVersion": {
       "type": "string",
       "description": "Version of the AWS SSO CLI to install",
-      "proposals": [
-        "latest"
-      ],
+      "proposals": ["latest"],
       "default": "latest"
     },
     "installAwsSsoCliPrompt": {
@@ -29,9 +25,7 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": [
-        "AmazonWebServices.aws-toolkit-vscode"
-      ]
+      "extensions": ["AmazonWebServices.aws-toolkit-vscode"]
     }
   }
 }
