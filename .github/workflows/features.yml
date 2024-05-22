@@ -26,7 +26,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Build path-filters file
         id: build_path_filters
@@ -54,7 +54,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Check Version
         id: check_version
@@ -142,7 +142,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Install @devcontainers/cli
         id: install_devcontainers_cli
@@ -187,7 +187,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Validate
         uses: devcontainers/action@528049dce833673f136ddfc09c2720d450029a6b # v1.4.2
@@ -211,7 +211,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Log in to GitHub Container Registry
         id: login_ghcr
