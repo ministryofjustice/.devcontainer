@@ -11,7 +11,6 @@ get_system_architecture
 VERSION=${KUBERNETESCLIVERSION:-"latest"}
 INSTALL_PROMPT="${INSTALLKUBERNETESCLIPROMPT:-"true"}"
 
-
 if [[ "${VERSION}" == "latest" ]]; then
   VERSION=$(curl --location --silent https://dl.k8s.io/release/stable.txt)
 fi
