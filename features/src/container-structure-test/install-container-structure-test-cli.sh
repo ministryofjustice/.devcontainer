@@ -9,7 +9,7 @@ source /usr/local/bin/devcontainer-utils
 get_system_architecture
 
 GITHUB_REPOSITORY="GoogleContainerTools/container-structure-test"
-VERSION="${CONTAINERSTRUCTURETESTVERSION:-"latest"}"
+VERSION="${CONTAINERSTRUCTURETESTCLIVERSION:-"latest"}"
 
 if [[ "${VERSION}" == "latest" ]]; then
   get_github_latest_tag "${GITHUB_REPOSITORY}"
@@ -24,5 +24,7 @@ curl --fail-with-body --location "https://github.com/${GITHUB_REPOSITORY}/releas
   --output "container-structure-test"
 
 install --owner=vscode --group=vscode --mode=775 container-structure-test /usr/local/bin/container-structure-test
+
+container-structure-test completion zsh >>/home/vscode/.devcontainer/featurerc.d/container-structure-test-cli.sh
 
 rm --force container-structure-test

@@ -9,7 +9,7 @@ source /usr/local/bin/devcontainer-utils
 get_system_architecture
 
 GITHUB_REPOSITORY="tenable/terrascan"
-VERSION="${TRIVYCLIVERSION:-"latest"}"
+VERSION="${TERRASCANCLIVERSION:-"latest"}"
 
 if [[ "${VERSION}" == "latest" ]]; then
   get_github_latest_tag "${GITHUB_REPOSITORY}"
@@ -33,4 +33,4 @@ tar --extract --file "terrascan_${VERSION_STRIP_V}_Linux_${ARCHITECTURE}.tar.gz"
 
 install --owner=vscode --group=vscode --mode=775 terrascan /usr/local/bin/terrascan
 
-rm --recursive --force rm -rf terrascan LICENSE README.md CHANGELOG.md "terrascan_${VERSION_STRIP_V}_Linux_${ARCHITECTURE}.tar.gz"
+rm --recursive --force terrascan LICENSE README.md CHANGELOG.md "terrascan_${VERSION_STRIP_V}_Linux_${ARCHITECTURE}.tar.gz"
