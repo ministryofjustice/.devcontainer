@@ -11,7 +11,8 @@ PROMPT+='`\
   elif [[ ! -z "${KUBE_CURRENT_CONTEXT}" ]]; then \
     echo -n "[ context: %{$fg[yellow]%}${KUBE_CURRENT_CONTEXT}%{$reset_color%} ] "; \
   fi \
-  && if [[ ! -z "${KUBE_CURRENT_NAMESPACE}" ]]; then \
-       echo -n "[ namespace: %{$fg[white]%}${KUBE_CURRENT_NAMESPACE}%{$reset_color%} ] "; \
-     fi \
+  && \
+  if [[ ! -z "${KUBE_CURRENT_NAMESPACE}" ]]; then \
+    echo -n "[ namespace: %{$fg[white]%}${KUBE_CURRENT_NAMESPACE}%{$reset_color%} ] "; \
+  fi \
 `'
