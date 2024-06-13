@@ -29,6 +29,6 @@ install --owner=vscode --group=vscode --mode=775 "linux-${ARCHITECTURE}/helm" /u
 
 install --directory --owner=vscode --group=vscode /home/vscode/.config/helm
 
-install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/helm.sh /home/vscode/.devcontainer/featurerc.d/helm.sh
+install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/helm-cli.sh /home/vscode/.devcontainer/featurerc.d/helm-cli.sh
 
 rm --recursive --force "linux-${ARCHITECTURE}" "helm-${VERSION}-linux-${ARCHITECTURE}.tar.gz"

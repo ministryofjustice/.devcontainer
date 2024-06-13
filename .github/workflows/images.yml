@@ -26,7 +26,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Build path-filters file
         id: build_path_filters
@@ -54,7 +54,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Check Version
         id: check_version
@@ -143,11 +143,11 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Set Up Container Structure Test
         id: setup_container_structure_test
-        uses: ministryofjustice/github-actions/setup-container-structure-test@11e78e36ac2cab791b02824fc528885199bf88a1 # v18.0.0
+        uses: ministryofjustice/github-actions/setup-container-structure-test@c9cb317b93b19d1c28b7a42b0c982bdff8106bbb # v18.0.1
 
       - name: Set Up QEMU
         id: setup_qemu
@@ -158,7 +158,7 @@ jobs:
         uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
 
       - name: Build Image
-        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
+        uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # v5.4.0
         with:
           file: images/${{ matrix.image }}/Dockerfile
           context: images/${{ matrix.image }}
@@ -176,7 +176,7 @@ jobs:
 
       - name: Scan Image
         id: scan_image
-        uses: aquasecurity/trivy-action@b2933f565dbc598b29947660e66259e3c7bc8561 # 0.20.0
+        uses: aquasecurity/trivy-action@595be6a0f6560a0a8fc419ddf630567fc623531d # 0.22.0
         with:
           scan-type: image
           image-ref: ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
@@ -201,7 +201,7 @@ jobs:
     steps:
       - name: Checkout
         id: checkout
-        uses: actions/checkout@44c2b7a8a4ea60a981eaca3cf939b5f4305c123b # v4.1.5
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Set Up QEMU
         id: setup_qemu
@@ -213,7 +213,7 @@ jobs:
 
       - name: Log in to GitHub Container Registry
         id: login_ghcr
-        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
+        uses: docker/login-action@0d4c9c5ea7693da7b068278f7b52bda2a190a446 # v3.2.0
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -226,7 +226,7 @@ jobs:
           echo "version=${version}" >>"${GITHUB_ENV}"
 
       - name: Publish Image
-        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
+        uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # v5.4.0
         with:
           file: images/${{ matrix.image }}/Dockerfile
           context: images/${{ matrix.image }}
