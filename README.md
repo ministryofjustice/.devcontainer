@@ -18,7 +18,8 @@
 - [Adding Features to a Development Container](#adding-features-to-a-development-container)
 - [Contributing](#contributing)
 
-This repository was created by Ministry of Justice's Dev Container Community of Practice. The goal is to release a foundational image for deployment, develop features that boost developer efficiency, and set a benchmark for using containerised development environments within the Ministry of Justice. Additionally this repository serves documentation relating to the use and configuration of devcontainers within the Ministry of Justice.
+This repository was created by Ministry of Justice's Dev Container Community of Practice. The goal is to release a foundational image for deployment, develop features that boost developer efficiency, and set a benchmark for using containerised development environments within the Ministry of Justice.
+Additionally this repository serves documentation relating to the use and configuration of devcontainers within the Ministry of Justice.
 
 Contact us on our Slack channel - [`#devcontainer-community`](https://moj.enterprise.slack.com/archives/C06DZ4F04JZ).
 
