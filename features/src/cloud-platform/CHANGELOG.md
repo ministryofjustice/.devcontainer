@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Curated Kubernetes configuration file
 
-- ZSH prompt extension
+- Zsh prompt extension
 
 ## [0.0.1] - 2024-01-30
 
