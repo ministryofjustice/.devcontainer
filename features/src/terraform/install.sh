@@ -6,3 +6,6 @@ source /usr/local/bin/devcontainer-utils
 
 logger "info" "Installing Terraform CLI (version: ${TERRAFORMCLIVERSION})"
 bash "$(dirname "${0}")"/install-terraform-cli.sh
+
+logger "info" "Installing tflint (version: ${TFLINTVERSION})"
+bash "$(dirname "${0}")"/install-tflint.sh
