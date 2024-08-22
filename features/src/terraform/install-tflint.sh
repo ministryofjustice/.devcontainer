@@ -27,6 +27,4 @@ unzip "tflint_${VERSION_STRIP_V}_linux_${ARCHITECTURE}.zip"
 
 install --owner=vscode --group=vscode --mode=775 tflint /usr/local/bin/tflint
 
-install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/tflint-cli.sh /home/vscode/.devcontainer/featurerc.d/tflint-cli.sh
-
 rm --recursive --force tflint "tflint_${VERSION_STRIP_V}_linux_${ARCHITECTURE}.zip"
