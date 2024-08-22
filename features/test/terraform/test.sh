@@ -9,4 +9,6 @@ source dev-container-features-test-lib
 check "terraform version" terraform version
 check "terraform featurerc existence" stat /home/vscode/.devcontainer/featurerc.d/terraform-cli.sh
 
+check "tflint version" tflint --version
+
 reportResults
