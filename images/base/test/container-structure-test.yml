@@ -14,7 +14,7 @@ commandTests:
 
   - name: "vscode user getent"
     command: "getent"
-    args: ["passwd", "vscode" ]
+    args: ["passwd", "vscode"]
     expectedOutput: ["vscode:x:1001:1001::/home/vscode:/usr/bin/zsh"]
 
   - name: "pip"

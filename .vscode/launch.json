@@ -6,7 +6,10 @@
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["${workspaceFolder}/scripts/features/test.sh", "${input:feature}"],
+      "runtimeArgs": [
+        "${workspaceFolder}/scripts/features/test.sh",
+        "${input:feature}"
+      ],
       "console": "integratedTerminal"
     },
     {
@@ -14,7 +17,10 @@
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "bash",
-      "runtimeArgs": ["${workspaceFolder}/scripts/images/build-and-test.sh", "${input:image}"],
+      "runtimeArgs": [
+        "${workspaceFolder}/scripts/images/build-and-test.sh",
+        "${input:image}"
+      ],
       "console": "integratedTerminal"
     }
   ],
@@ -23,7 +29,14 @@
       "id": "feature",
       "type": "pickString",
       "description": "Select the feature to test",
-      "options": ["aws", "cloud-platform", "container-structure-test", "kubernetes", "static-analysis", "terraform"]
+      "options": [
+        "aws",
+        "cloud-platform",
+        "container-structure-test",
+        "kubernetes",
+        "static-analysis",
+        "terraform"
+      ]
     },
     {
       "id": "image",
