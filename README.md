@@ -47,7 +47,7 @@ Official documentation is located [here](https://code.visualstudio.com/docs/devc
 
 1. Create a `.devcontainer` folder in the root of your project.
 1. Add a `devcontainer.json` file to the `.devcontainer` folder.
-There are a number of parameters which can be included in a devconatiner.json file, these are noted in detail [here](https://containers.dev/implementors/json_reference/).
+   There are a number of parameters which can be included in a devconatiner.json file, these are noted in detail [here](https://containers.dev/implementors/json_reference/).
 1. Populate the `devcontainer.json` file with the required settings:
 
 ```json
@@ -96,7 +96,6 @@ The Kubernetes feature installs:
 - [helm](https://helm.sh/docs/intro/install/) - the package manager for Kubernetes
 
 - [ct](https://github.com/helm/chart-testing) - to lint and test Helm charts
-
 
 ### Static Analysis
 
