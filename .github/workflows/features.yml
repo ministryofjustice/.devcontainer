@@ -190,7 +190,7 @@ jobs:
         uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Validate
-        uses: devcontainers/action@528049dce833673f136ddfc09c2720d450029a6b # v1.4.2
+        uses: devcontainers/action@1082abd5d2bf3a11abccba70eef98df068277772 # v1.4.3
         with:
           validate-only: true
           base-path-to-features: features/src
