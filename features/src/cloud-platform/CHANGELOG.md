@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.0.5] - 2024-10-07
+
+## Changed
+
+- Bumped to `ghcr.io/ministryofjustice/devcontainer-feature/kubernetes:1`
+
+- Bumped Kubernetes CLI version to `v1.29.9`
+
 ## [0.0.4] - 2024-04-05
 
 ## Changed

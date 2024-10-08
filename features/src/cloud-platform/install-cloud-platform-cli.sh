@@ -32,7 +32,7 @@ install --owner=vscode --group=vscode --mode=775 cloud-platform /usr/local/bin/c
 install --owner=vscode --group=vscode --mode=775 completions/cloud-platform.zsh /usr/local/share/zsh/site-functions/_cloud-platform
 
 if [[ "${INSTALL_CLOUD_PLATFORM_KUBECONFIG}" == "true" ]]; then
-  install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.kube/config /home/vscode/.kube/config
+  install --owner=vscode --group=vscode --mode=0600 "$(dirname "${0}")"/src/home/vscode/.kube/config /home/vscode/.kube/config
 fi
 
 if [[ "${INSTALL_CLOUD_PLATFORM_PROMPT}" == "true" ]]; then
