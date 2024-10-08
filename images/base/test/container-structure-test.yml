@@ -5,17 +5,17 @@ commandTests:
   - name: "vscode user"
     command: "id"
     args: ["--user", "vscode"]
-    expectedOutput: ["1001"]
+    expectedOutput: ["1000"]
 
   - name: "vscode group"
     command: "id"
     args: ["--group", "vscode"]
-    expectedOutput: ["1001"]
+    expectedOutput: ["1000"]
 
   - name: "vscode user getent"
     command: "getent"
     args: ["passwd", "vscode"]
-    expectedOutput: ["vscode:x:1001:1001::/home/vscode:/usr/bin/zsh"]
+    expectedOutput: ["vscode:x:1000:1000::/home/vscode:/usr/bin/zsh"]
 
   - name: "pip"
     command: "pip"

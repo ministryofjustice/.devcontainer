@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2024-05-13
+
+### Changes
+
+- Pinned to [1.2.0](https://github.com/devcontainers/images/blob/main/src/base-ubuntu/history/1.2.0.md)
+
+- Reverted user change, now back at `1000:1000`
+
 ## [2.0.0] - 2024-05-13
 
 ### Changed
