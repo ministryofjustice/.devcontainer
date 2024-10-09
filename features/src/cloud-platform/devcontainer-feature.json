@@ -1,6 +1,6 @@
 {
   "id": "cloud-platform",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "name": "Cloud Platform",
   "description": "Installs the Cloud Platform CLI",
   "options": {
@@ -21,8 +21,8 @@
     }
   },
   "dependsOn": {
-    "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes:0": {
-      "kubernetesCliVersion": "v1.26.13"
+    "ghcr.io/ministryofjustice/devcontainer-feature/kubernetes:1": {
+      "kubernetesCliVersion": "v1.29.9"
     }
   }
 }
