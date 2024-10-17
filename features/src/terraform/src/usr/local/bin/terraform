@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # If current directory contains .tf files, set TF_DATA_DIR to /tmp/terraform/${currentDirectory} otherwise use default
-if ls *.tf &> /dev/null; then
+if ls *.tf &>/dev/null; then
   currentDirectory="$(basename $(pwd))"
   export TF_DATA_DIR="/tmp/terraform/${currentDirectory}"
 fi
