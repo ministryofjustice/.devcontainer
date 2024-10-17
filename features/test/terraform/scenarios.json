@@ -1,9 +1,9 @@
 {
-  "no_wrapper" : {
+  "no_wrapper": {
     "image": "ghcr.io/ministryofjustice/devcontainer-base:local-feature-test",
     "features": {
       "terraform": {
-          "installTerraformWrapper": false
+        "installTerraformWrapper": false
       }
     }
   }
