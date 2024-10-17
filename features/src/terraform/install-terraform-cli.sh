@@ -10,6 +10,7 @@ get_system_architecture
 
 GITHUB_REPOSITORY="hashicorp/terraform"
 VERSION="${TERRAFORMCLIVERSION:-"latest"}"
+INSTALL_TERRAFORM_WRAPPER="${INSTALLTERRAFORMWRAPPER:-"true"}"
 
 if [[ "${VERSION}" == "latest" ]]; then
   get_github_latest_tag "${GITHUB_REPOSITORY}"
@@ -25,7 +26,12 @@ curl --fail-with-body --location "https://releases.hashicorp.com/terraform/${VER
 
 unzip "terraform_${VERSION_STRIP_V}_linux_${ARCHITECTURE}.zip"
 
-install --owner=vscode --group=vscode --mode=775 terraform /usr/local/bin/terraform
+if [[ "${INSTALL_TERRAFORM_WRAPPER}" == "true" ]]; then
+  install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/usr/local/bin/terraform /usr/local/bin/terraform
+  install --owner=vscode --group=vscode --mode=775 terraform /usr/local/bin/terraform-bin
+else
+  install --owner=vscode --group=vscode --mode=775 terraform /usr/local/bin/terraform
+fi
 
 install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/terraform-cli.sh /home/vscode/.devcontainer/featurerc.d/terraform-cli.sh
 

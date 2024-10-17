@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2024-10-17
+
+### Added
+
+- Default to installing wrapper script that sets `TF_DATA_DIR` to `/tmp/terraform/${currentDirectory}` ([#140](https://github.com/ministryofjustice/.devcontainer/issues/140))
+
 ## [1.1.0] - 2024-08-22
 
 ### Changed
