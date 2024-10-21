@@ -1,9 +1,9 @@
 {
   "id": "terraform",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "name": "Terraform",
   "documentationURL": "https://github.com/ministryofjustice/.devcontainer/tree/main/features/src/terraform",
-  "description": "Installs the Terraform CLI and tflint",
+  "description": "Installs the Terraform CLI, tflint and a wrapper script to aid with permissions issues on macOS",
   "options": {
     "terraformCliVersion": {
       "type": "string",
@@ -16,6 +16,11 @@
       "description": "Version of the tflint to install",
       "proposals": ["latest"],
       "default": "latest"
+    },
+    "installTerraformWrapper": {
+      "type": "boolean",
+      "description": "Install a Terraform wrapper to help with this permissions bug (https://github.com/ministryofjustice/.devcontainer/issues/140)",
+      "default": true
     }
   },
   "customizations": {
