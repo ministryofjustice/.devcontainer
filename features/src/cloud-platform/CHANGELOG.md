@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2024-10-17
+
+## Changed
+
+- set `installKubernetesCliPrompt` to `false` for `ghcr.io/ministryofjustice/devcontainer-feature/kubernetes`
+
+- Promote to 1.0.0
+
 ## [0.0.5] - 2024-10-07
 
 ## Changed
