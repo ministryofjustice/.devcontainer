@@ -4,22 +4,22 @@
 PROMPT+='`\
   case ${AWS_SSO_PROFILE} in \
     *"development"*|*"sandbox"*) \
-      color=green \
+      colour=green \
       ;; \
     *"test"*) \
-      color=blue \
+      colour=blue \
       ;; \
     *"preproduction"*) \
-      color=yellow \
+      colour=yellow \
       ;; \
     *"production"*) \
-      color=red \
+      colour=red \
       ;; \
     *) \
-      color=white \
+      colour=white \
       ;; \
   esac; \
   if [[ ! -z ${AWS_SSO_PROFILE} ]]; then \
-    echo -n "[ aws: %{$fg[$color]%}${AWS_SSO_PROFILE}@${AWS_DEFAULT_REGION}%{$reset_color%} ] "; \
+    echo -n "[ aws: %{$fg[$colour]%}${AWS_SSO_PROFILE}@${AWS_DEFAULT_REGION}%{$reset_color%} ] "; \
   fi
 `'
