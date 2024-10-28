@@ -2,17 +2,29 @@
 # shellcheck disable=SC2016
 
 PROMPT+='`\
-  export KUBE_CURRENT_CONTEXT=$(kubectl config current-context 2>/dev/null); \
-  export KUBE_CURRENT_NAMESPACE=$(kubectl config view --minify --output "jsonpath={..namespace}" 2>/dev/null); \
-  if [[ "${KUBE_CURRENT_CONTEXT}" == *"development"* ]]; then \
-    echo -n "[ context: %{$fg[green]%}${KUBE_CURRENT_CONTEXT}%{$reset_color%} ] "; \
-  elif [[ "${KUBE_CURRENT_CONTEXT}" == *"production"* ]]; then \
-    echo -n "[ context: %{$fg[red]%}${KUBE_CURRENT_CONTEXT}%{$reset_color%} ] "; \
-  elif [[ ! -z "${KUBE_CURRENT_CONTEXT}" ]]; then \
-    echo -n "[ context: %{$fg[yellow]%}${KUBE_CURRENT_CONTEXT}%{$reset_color%} ] "; \
-  fi \
-  && \
-  if [[ ! -z "${KUBE_CURRENT_NAMESPACE}" ]]; then \
-    echo -n "[ namespace: %{$fg[white]%}${KUBE_CURRENT_NAMESPACE}%{$reset_color%} ] "; \
-  fi \
+  CURRENT_CONTEXT=$(kubectl config current-context 2>/dev/null); \
+  CURRENT_NAMESPACE=$(kubectl config view --minify --output "jsonpath={..namespace}" 2>/dev/null); \
+  case ${CURRENT_CONTEXT} in \
+    *"development"*|*"sandbox"*) \
+      colour=green \
+      ;; \
+    *"test"*) \
+      colour=blue \
+      ;; \
+    *"preproduction"*) \
+      colour=yellow \
+      ;; \
+    *"production"*) \
+      colour=red \
+      ;; \
+    *) \
+      colour=white \
+      ;; \
+  esac; \
+  if [[ ! -z ${CURRENT_CONTEXT} ]]; then \
+    echo -n "[ context: %{$fg[$colour]%}${CURRENT_CONTEXT}%{$reset_color%} ] "; \
+  fi; \
+  if [[ ! -z ${CURRENT_NAMESPACE} ]]; then \
+    echo -n "[ namespace: ${CURRENT_NAMESPACE} ] "; \
+  fi
 `'
