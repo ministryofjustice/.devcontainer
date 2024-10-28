@@ -8,7 +8,7 @@
 
 PROMPT+='`\
   CURRENT_CONTEXT=$(kubectl config current-context 2>/dev/null); \
-  CURRENT_NAMESPACE=$(kubectl config view --minify --output "jsonpath={..namespace}"); \
+  CURRENT_NAMESPACE=$(kubectl config view --minify --output "jsonpath={..namespace}" 2>/dev/null); \
   CURRENT_CLIENT_ID=$(kubectl config view --output json | jq -r ".users[0].user[\"auth-provider\"].config[\"client-id\"]"); \
   SERVER_VERSION=$(kubectl version --output json 2>/dev/null | jq -r .serverVersion.gitVersion); \
   if [[ "${CURRENT_CONTEXT}" == "cloud-platform-live" ]] && [[ "${CURRENT_CLIENT_ID}" == "REPLACE_WITH_CLIENT_ID" ]]; then \
