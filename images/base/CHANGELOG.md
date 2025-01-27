@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.0] - 2025-01-27
+
+### Changes
+
+- Updated to [1.2.3](https://github.com/devcontainers/images/blob/main/src/base-ubuntu/history/1.2.3.md)
+
 ## [3.0.0] - 2024-05-13
 
 ### Changes
