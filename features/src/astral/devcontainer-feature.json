@@ -1,0 +1,26 @@
+{
+  "id": "astral",
+  "version": "1.0.0",
+  "name": "Astral",
+  "documentationURL": "https://github.com/ministryofjustice/.devcontainer/tree/main/features/src/astral",
+  "description": "Installs Astral tools (uv and ruff)",
+  "options": {
+    "uvVersion": {
+      "type": "string",
+      "description": "Version of uv to install",
+      "proposals": ["latest"],
+      "default": "latest"
+    },
+    "ruffVersion": {
+      "type": "string",
+      "description": "Version of ruff to install",
+      "proposals": ["latest"],
+      "default": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["charliermarsh.ruff"]
+    }
+  }
+}
