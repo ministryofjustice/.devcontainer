@@ -41,6 +41,6 @@ export awsSsoFilePassword
 
 sed --in-place "s/REPLACE_ME/${awsSsoFilePassword}/g" /home/vscode/.devcontainer/featurerc.d/aws-sso-cli.sh
 
-aws-sso --config /home/vscode/.aws-sso/config.yaml completions --source --shell=zsh >>/home/vscode/.devcontainer/featurerc.d/aws-sso-cli.sh
+aws-sso --config /home/vscode/.aws-sso/config.yaml setup completions --source --shell=zsh >>/home/vscode/.devcontainer/featurerc.d/aws-sso-cli.sh
 
 rm --force aws-sso
