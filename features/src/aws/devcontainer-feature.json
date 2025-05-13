@@ -1,6 +1,6 @@
 {
   "id": "aws",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "name": "AWS",
   "documentationURL": "https://github.com/ministryofjustice/.devcontainer/tree/main/features/src/aws",
   "description": "Installs the AWS CLI and AWS SSO CLI",
