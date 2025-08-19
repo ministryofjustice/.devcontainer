@@ -20,13 +20,12 @@ else
   VERSION_STRIP_V="${VERSION#v}"
 fi
 
-
-curl --fail-with-body --location "https://github.com/${GITHUB_REPOSITORY}/releases/download/v${VERSION_STRIP_V}/velero-v${VERSION_STRIP_V}-linux-${ARCHITECTURE}.tar.gz" \
+curl --fail-with-body --location "https://github.com/${GITHUB_REPOSITORY}/releases/download/${VERSION}/velero-${VERSION}-linux-${ARCHITECTURE}.tar.gz" \
   --output "velero.tar.gz"
 
 mkdir velero
 
-tar -xvf velero.tar.gz -C velero --strip-components=1
+tar --gzip --extract --file velero.tar.gz --directory=velero --strip-components=1
 
 install --owner=vscode --group=vscode --mode=775 velero/velero /usr/local/bin/velero
 
