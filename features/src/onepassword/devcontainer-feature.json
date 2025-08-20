@@ -1,0 +1,19 @@
+{
+  "id": "onepassword",
+  "version": "0.0.1",
+  "name": "1Password CLI",
+  "description": "Installs the 1Password CLI",
+  "options": {
+    "onepasswordCliVersion": {
+      "type": "string",
+      "description": "Version of 1Password CLI to install",
+      "proposals": ["latest"],
+      "default": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["1Password.op-vscode"]
+    }
+  }
+}
