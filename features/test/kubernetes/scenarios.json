@@ -1,0 +1,10 @@
+{
+  "with_velero": {
+    "image": "ghcr.io/ministryofjustice/devcontainer-base:local-feature-test",
+    "features": {
+      "kubernetes": {
+        "installVeleroCli": true
+      }
+    }
+  }
+}

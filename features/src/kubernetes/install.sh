@@ -12,3 +12,8 @@ bash "$(dirname "${0}")"/install-helm-cli.sh
 
 logger "info" "Installing Helm Chart Testing CLI (version: ${HELMCTCLIVERSION})"
 bash "$(dirname "${0}")"/install-helm-ct-cli.sh
+
+if [[ "${INSTALLVELEROCLI}" == "true" ]]; then
+  logger "info" "Installing Velero CLI (version: ${VELEROCLIVERSION})"
+  bash "$(dirname "${0}")"/install-velero-cli.sh
+fi

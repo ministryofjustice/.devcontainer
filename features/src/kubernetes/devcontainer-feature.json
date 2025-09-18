@@ -1,6 +1,6 @@
 {
   "id": "kubernetes",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "name": "Kubernetes",
   "description": "Installs the Kubernetes CLI, Helm CLI and Helm Chart Testing CLI",
   "options": {
@@ -26,6 +26,17 @@
       "description": "Version of the Helm Chart Testing CLI to install",
       "proposals": ["latest"],
       "default": "latest"
+    },
+    "veleroCliVersion": {
+      "type": "string",
+      "description": "Version of the Velero CLI to install",
+      "proposals": ["latest"],
+      "default": "latest"
+    },
+    "installVeleroCli": {
+      "type": "boolean",
+      "description": "Whether to install the Velero CLI",
+      "default": false
     }
   },
   "customizations": {
