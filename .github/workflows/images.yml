@@ -27,6 +27,8 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
 
       - name: Build path-filters file
         id: build_path_filters
@@ -55,18 +57,21 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
 
       - name: Check Version
         id: check_version
         env:
           GH_TOKEN: ${{ github.token }}
+          MATRIX_IMAGE: ${{ matrix.image }}
         run: |
-          echo "${{ env.GH_TOKEN }}" | skopeo login ghcr.io --username ${{ github.actor }} --password-stdin
+          echo "${GH_TOKEN}" | skopeo login ghcr.io --username ${GITHUB_ACTOR} --password-stdin
 
-          version=$(jq -r '.version' images/${{ matrix.image }}/config.json)
+          version=$(jq -r '.version' images/${MATRIX_IMAGE}/config.json)
           export version
 
-          if skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}; then
+          if skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${MATRIX_IMAGE}; then
             image_exists=true
           else
             echo "image_exists=false" >>"${GITHUB_ENV}"
@@ -74,7 +79,7 @@ jobs:
           fi
 
           if [[ "${image_exists}" == "true" ]]; then
-            checkTag=$(skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }} | jq -r --arg version "${version}" '.Tags | index($version)')
+            checkTag=$(skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${MATRIX_IMAGE} | jq -r --arg version "${version}" '.Tags | index($version)')
             export checkTag
 
             if [[ -z "${imageTag}" ]]; then
@@ -88,9 +93,10 @@ jobs:
         id: check_changelog_updates
         env:
           GH_TOKEN: ${{ github.token }}
+          MATRIX_IMAGE: ${{ matrix.image }}
         run: |
-          mainSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${{ matrix.image }}/CHANGELOG.md --field ref="main" | jq -r '.sha')
-          branchSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${{ matrix.image }}/CHANGELOG.md --field ref="${GITHUB_HEAD_REF}" | jq -r '.sha')
+          mainSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${MATRIX_IMAGE}/CHANGELOG.md --field ref="main" | jq -r '.sha')
+          branchSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${MATRIX_IMAGE}/CHANGELOG.md --field ref="${GITHUB_HEAD_REF}" | jq -r '.sha')
 
           if [[ -z "${mainSha}" ]]; then
             SHA not found for main branch, assuming CHANGELOG.md does not exist
@@ -108,7 +114,7 @@ jobs:
       - name: Evaluate Checks
         id: evaluate_checks
         run: |
-          if [[ "${{ env.tag_exists }}" == "true" ]]; then
+          if [[ "${TAG_EXISTS}" == "true" ]]; then
             echo "::error::FAIL: Container tag already exists"
             export failBuild="true"
           else
@@ -116,10 +122,10 @@ jobs:
             export failBuild="false"
           fi
 
-          if [[ "${{ env.changelog_updated }}" == "true" ]]; then
+          if [[ "${CHANGELOG_UPDATED}" == "true" ]]; then
             echo "::notice::OK: CHANGELOG.md has been updated"
             export failBuild="false"
-          elif [[ "${{ env.changelog_updated }}" == "false" ]]; then
+          elif [[ "${CHANGELOG_UPDATED}" == "false" ]]; then
             echo "::error::FAIL: CHANGELOG.md needs to be updated"
             export failBuild="true"
           fi
@@ -144,10 +150,12 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
 
       - name: Set Up Container Structure Test
         id: setup_container_structure_test
-        uses: ministryofjustice/github-actions/setup-container-structure-test@db1a54895bf5fb975c60af47e5a3aab96505ca3e # v18.6.0
+        uses: ministryofjustice/action-setup-container-structure-test@d0636fa19d04c3fc71c30ae4eb8da03be63dbd4b # v1.0.0
 
       - name: Set Up QEMU
         id: setup_qemu
@@ -171,8 +179,10 @@ jobs:
         run: |
           container-structure-test test \
             --platform ${{ matrix.platform }} \
-            --config images/${{ matrix.image }}/test/container-structure-test.yml \
-            --image ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
+            --config images/${MATRIX_IMAGE}/test/container-structure-test.yml \
+            --image ghcr.io/ministryofjustice/devcontainer-${MATRIX_IMAGE}:${{ github.sha }}
+        env:
+          MATRIX_IMAGE: ${{ matrix.image }}
 
       - name: Scan Image
         id: scan_image
@@ -205,6 +215,8 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
 
       - name: Set Up QEMU
         id: setup_qemu
@@ -225,8 +237,10 @@ jobs:
       - name: Prepare Environment
         id: prepare_environment
         run: |
-          version=$(jq -r '.version' images/${{ matrix.image }}/config.json)
+          version=$(jq -r '.version' images/${MATRIX_IMAGE}/config.json)
           echo "version=${version}" >>"${GITHUB_ENV}"
+        env:
+          MATRIX_IMAGE: ${{ matrix.image }}
 
       - name: Publish Image
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83 # v6.18.0

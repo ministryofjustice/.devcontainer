@@ -2,7 +2,7 @@
 #checkov:skip=CKV_DOCKER_3: USER not required - A non-root user is created, and used by VS Code's Remote Containers extension
 # hadolint global ignore=DL3008,DL3013
 
-FROM mcr.microsoft.com/devcontainers/base:1.2.4-ubuntu-24.04
+FROM mcr.microsoft.com/devcontainers/base:1.2.6-ubuntu-24.04@sha256:763eca1839b2c6366f25b9c2b4c75c46e3d485a8d1b95f725e829397398a4c46
 
 LABEL org.opencontainers.image.vendor="Ministry of Justice" \
       org.opencontainers.image.authors="Dev Container Community" \
