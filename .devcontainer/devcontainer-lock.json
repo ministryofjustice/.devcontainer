@@ -5,10 +5,10 @@
       "resolved": "ghcr.io/devcontainers/features/docker-in-docker@sha256:ac0a882e936ba6275d7f4ed5ebfc09e4ddca8cbcaeaad18b412beacddeb2fa91",
       "integrity": "sha256:ac0a882e936ba6275d7f4ed5ebfc09e4ddca8cbcaeaad18b412beacddeb2fa91"
     },
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "1.6.3",
-      "resolved": "ghcr.io/devcontainers/features/node@sha256:3c35dff2aedeaeb86f03e10c265c29b56a1b3609324d83d6e901dbb6032543a4",
-      "integrity": "sha256:3c35dff2aedeaeb86f03e10c265c29b56a1b3609324d83d6e901dbb6032543a4"
+    "ghcr.io/devcontainers/features/node:": {
+      "version": "1.7.0",
+      "resolved": "ghcr.io/devcontainers/features/node@sha256:e2fe58e98b235779e253224dd6dd78acb7a4de79efd9b9b210b1785846c09170",
+      "integrity": "sha256:e2fe58e98b235779e253224dd6dd78acb7a4de79efd9b9b210b1785846c09170"
     }
   }
 }
