@@ -147,7 +147,7 @@ jobs:
 
       - name: Set Up Container Structure Test
         id: setup_container_structure_test
-        uses: ministryofjustice/github-actions/setup-container-structure-test@db1a54895bf5fb975c60af47e5a3aab96505ca3e # v18.6.0
+        uses: ministryofjustice/github-actions/setup-container-structure-test@9c552c078797be58222f42f311cdf52c5fabd9ee # v19.0.0
 
       - name: Set Up QEMU
         id: setup_qemu
