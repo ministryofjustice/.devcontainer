@@ -2,15 +2,42 @@
 version: 2
 
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
   - package-ecosystem: "devcontainers"
+    commit-message:
+      include: "scope"
+      prefix: ":dependabot: devcontainers"
+    cooldown:
+      default-days: 7
+      exclude:
+        - "ghcr.io/ministryofjustice/devcontainer-feature/*"
     directory: "/"
+    open-pull-requests-limit: 15
     schedule:
       interval: "daily"
-  - package-ecosystem: "docker"
+  - package-ecosystem: "github-actions"
+    commit-message:
+      include: "scope"
+      prefix: ":dependabot: github-actions"
+    cooldown:
+      default-days: 7
+      exclude:
+        - "ministryofjustice/action*"
+        - "ministryofjustice/data-platform-github-actions*"
     directory: "/"
+    groups:
+      data-platform-github-actions:
+        patterns:
+          - "ministryofjustice/data-platform-github-actions*"
+    open-pull-requests-limit: 15
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pre-commit"
+    commit-message:
+      include: "scope"
+      prefix: ":dependabot: pre-commit"
+    cooldown:
+      default-days: 7
+    directory: "/"
+    open-pull-requests-limit: 15
     schedule:
       interval: "daily"

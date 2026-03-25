@@ -2,17 +2,20 @@
   "name": "devcontainer-community",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
   "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:": {},
-    "ghcr.io/devcontainers/features/node:": {}
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainer-community/devcontainer-features/astral.sh-uv:1": {}
   },
-  "postCreateCommand": "npm install --global @devcontainers/cli",
   "customizations": {
     "vscode": {
       "extensions": [
         "EditorConfig.EditorConfig",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
         "GitHub.vscode-github-actions",
         "GitHub.vscode-pull-request-github"
       ]
     }
-  }
+  },
+  "postCreateCommand": "bash .devcontainer/post-create.sh"
 }

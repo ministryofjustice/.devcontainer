@@ -103,10 +103,6 @@ The Static Analysis feature installs:
 
 - [checkov](https://www.checkov.io/)
 
-- [trivy](https://aquasecurity.github.io/trivy/v0.51/)
-
-- [terrascan](https://runterrascan.io/)
-
 ### Terraform
 
 The Terraform feature installs the [`terraform`](https://developer.hashicorp.com/terraform/cli/commands) CLI.

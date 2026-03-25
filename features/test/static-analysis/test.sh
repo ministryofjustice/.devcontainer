@@ -7,7 +7,5 @@ set -e
 source dev-container-features-test-lib
 
 check "checkov version" checkov --version
-check "trivy version" trivy --version
-check "terrascan version" terrascan version
 
 reportResults
