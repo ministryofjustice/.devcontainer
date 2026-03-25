@@ -1,37 +1,23 @@
 ---
-name: Super-Linter
+name: Super Linter
 
 on:
   pull_request:
     branches:
       - main
-    types:
-      - edited
-      - opened
-      - reopened
-      - synchronize
 
 permissions: {}
 
 jobs:
   super-linter:
-    name: Super-Linter
-    runs-on: ubuntu-latest
+    name: Super Linter
     permissions:
       contents: read
+      packages: read
       statuses: write
-    steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          fetch-depth: 0
-
-      - name: Super-Linter
-        id: super_linter
-        uses: super-linter/super-linter/slim@12150456a73e248bdc94d0794898f94e23127c88 # v7.4.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: main
-          VALIDATE_BASH_EXEC: false
-          VALIDATE_JSCPD: false
+    uses: ministryofjustice/data-platform-github-actions/.github/workflows/super-linter.yml@27dbc646878cabcd2a879c49639d6a3d23510d53 # v3.2.0
+    with:
+      super-linter-variables: |
+        {
+          "VALIDATE_JSCPD": false
+        }
