@@ -1,58 +1,29 @@
 ---
-name: Images
+name: Base Image
 
 on:
   pull_request:
     branches:
       - main
     paths:
-      - images/**
+      - images/base/**
   push:
     branches:
       - main
     paths:
-      - images/**
+      - images/base/**
 
 permissions: {}
 
 jobs:
-  detect-changes:
-    name: Detect Changes
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-    outputs:
-      images: ${{ steps.detect_changes.outputs.changes }}
-    steps:
-      - name: Checkout
-        id: checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          persist-credentials: false
-
-      - name: Build path-filters file
-        id: build_path_filters
-        run: bash scripts/path-filter/configuration-generator.sh images
-
-      - name: Detect changes
-        id: detect_changes
-        uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
-        with:
-          filters: .github/path-filters/images.yml
-
   preflight-checks:
-    needs: [detect-changes]
-    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref != 'refs/heads/main' }}
+    if: ${{ github.ref != 'refs/heads/main' }}
     name: Preflight Checks
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
       packages: read
-    strategy:
-      fail-fast: false
-      matrix:
-        image: ${{ fromJson(needs.detect-changes.outputs.images) }}
     steps:
       - name: Checkout
         id: checkout
@@ -64,14 +35,13 @@ jobs:
         id: check_version
         env:
           GH_TOKEN: ${{ github.token }}
-          MATRIX_IMAGE: ${{ matrix.image }}
         run: |
-          echo "${GH_TOKEN}" | skopeo login ghcr.io --username ${GITHUB_ACTOR} --password-stdin
+          echo "${GH_TOKEN}" | skopeo login ghcr.io --username "${GITHUB_ACTOR}" --password-stdin
 
-          version=$(jq -r '.version' images/${MATRIX_IMAGE}/config.json)
+          version=$(jq -r '.version' "images/base/config.json")
           export version
 
-          if skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${MATRIX_IMAGE}; then
+          if skopeo list-tags "docker://ghcr.io/ministryofjustice/devcontainer-base"; then
             image_exists=true
           else
             echo "image_exists=false" >>"${GITHUB_ENV}"
@@ -79,10 +49,10 @@ jobs:
           fi
 
           if [[ "${image_exists}" == "true" ]]; then
-            checkTag=$(skopeo list-tags docker://ghcr.io/ministryofjustice/devcontainer-${MATRIX_IMAGE} | jq -r --arg version "${version}" '.Tags | index($version)')
+            checkTag=$(skopeo list-tags "docker://ghcr.io/ministryofjustice/devcontainer-base" | jq -r --arg version "${version}" '.Tags | index($version)')
             export checkTag
 
-            if [[ -z "${imageTag}" ]]; then
+            if [[ -z "${checkTag}" ]]; then
               echo "tag_exists=false" >>"${GITHUB_ENV}"
             else
               echo "tag_exists=true" >>"${GITHUB_ENV}"
@@ -93,16 +63,15 @@ jobs:
         id: check_changelog_updates
         env:
           GH_TOKEN: ${{ github.token }}
-          MATRIX_IMAGE: ${{ matrix.image }}
         run: |
-          mainSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${MATRIX_IMAGE}/CHANGELOG.md --field ref="main" | jq -r '.sha')
-          branchSha=$(gh api --method GET /repos/"${GITHUB_REPOSITORY}"/contents/images/${MATRIX_IMAGE}/CHANGELOG.md --field ref="${GITHUB_HEAD_REF}" | jq -r '.sha')
+          mainSha=$(gh api --method GET "/repos/${GITHUB_REPOSITORY}/contents/images/base/CHANGELOG.md" --field ref="main" | jq -r '.sha')
+          branchSha=$(gh api --method GET "/repos/${GITHUB_REPOSITORY}/contents/images/base/CHANGELOG.md" --field ref="${GITHUB_HEAD_REF}" | jq -r '.sha')
 
           if [[ -z "${mainSha}" ]]; then
-            SHA not found for main branch, assuming CHANGELOG.md does not exist
+            echo "SHA not found for main branch, assuming CHANGELOG.md does not exist"
           elif [[ -z "${branchSha}" ]]; then
-            SHA not found for "${GITHUB_HEAD_REF}" branch, assuming CHANGELOG.md does not exist
-            "changelog_updated=false" >>"${GITHUB_ENV}"
+            echo "SHA not found for ${GITHUB_HEAD_REF} branch, assuming CHANGELOG.md does not exist"
+            echo "changelog_updated=false" >>"${GITHUB_ENV}"
           elif [[ "${mainSha}" == "${branchSha}" ]]; then
             echo "CHANGELOG.md matches main branch, needs to be updated"
             echo "changelog_updated=false" >>"${GITHUB_ENV}"
@@ -135,8 +104,7 @@ jobs:
           fi
 
   build-test:
-    needs: [detect-changes]
-    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref != 'refs/heads/main' }}
+    if: ${{ github.ref != 'refs/heads/main' }}
     name: Build and Test
     runs-on: ubuntu-latest
     permissions:
@@ -144,7 +112,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        image: ${{ fromJson(needs.detect-changes.outputs.images) }}
         platform: [linux/amd64, linux/arm64]
     steps:
       - name: Checkout
@@ -166,37 +133,31 @@ jobs:
         uses: docker/setup-buildx-action@4d04d5d9486b7bd6fa91e7baf45bbb4f8b9deedd # v4.0.0
 
       - name: Build Image
+        id: build_image
         uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7.0.0
         with:
-          file: images/${{ matrix.image }}/Dockerfile
-          context: images/${{ matrix.image }}
+          file: images/base/Dockerfile
+          context: images/base
           platforms: ${{ matrix.platform }}
           load: true
-          tags: ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ github.sha }}
+          tags: ghcr.io/ministryofjustice/devcontainer-base:${{ github.sha }}
 
       - name: Container Structure Test
         id: container_structure_test
-        env:
-          MATRIX_IMAGE: ${{ matrix.image }}
         run: |
           container-structure-test test \
-            --platform ${{ matrix.platform }} \
-            --config images/${MATRIX_IMAGE}/test/container-structure-test.yml \
-            --image ghcr.io/ministryofjustice/devcontainer-${MATRIX_IMAGE}:${{ github.sha }}
+            --platform "${{ matrix.platform }}" \
+            --config "images/base/test/container-structure-test.yml" \
+            --image "ghcr.io/ministryofjustice/devcontainer-base:${{ github.sha }}"
 
   publish:
-    needs: [detect-changes]
-    if: ${{ needs.detect-changes.outputs.images != '[]' && github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     name: Publish
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
       packages: write
-    strategy:
-      fail-fast: false
-      matrix:
-        image: ${{ fromJson(needs.detect-changes.outputs.images) }}
     steps:
       - name: Checkout
         id: checkout
@@ -222,19 +183,17 @@ jobs:
 
       - name: Prepare Environment
         id: prepare_environment
-        env:
-          MATRIX_IMAGE: ${{ matrix.image }}
         run: |
-          version=$(jq -r '.version' images/${MATRIX_IMAGE}/config.json)
-          echo "version=${version}" >>"${GITHUB_ENV}"
+          version=$(jq -r '.version' "images/base/config.json")
+          echo "version=${version}" >>"${GITHUB_OUTPUT}"
 
       - name: Publish Image
         uses: docker/build-push-action@d08e5c354a6adb9ed34480a06d141179aa583294 # v7.0.0
         with:
-          file: images/${{ matrix.image }}/Dockerfile
-          context: images/${{ matrix.image }}
+          file: images/base/Dockerfile
+          context: images/base
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:${{ env.version }}
-            ghcr.io/ministryofjustice/devcontainer-${{ matrix.image }}:latest
+            ghcr.io/ministryofjustice/devcontainer-base:${{ steps.prepare_environment.outputs.version }}
+            ghcr.io/ministryofjustice/devcontainer-base:latest
