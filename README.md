@@ -47,7 +47,7 @@ Read the official Dev Containers documentation on [Visual Studio Code](https://c
 
 1. Create a `.devcontainer` folder in the root of your project.
 1. Add a `devcontainer.json` file to the `.devcontainer` folder.
-  There are a number of parameters which can be included in a devcontainer.json file, documented in the [Dev Container Metadata Reference](https://github.com/devcontainers/spec/blob/main/docs/specs/devcontainerjson-reference.md).
+   There are a number of parameters which can be included in a devcontainer.json file, documented in the [Dev Container Metadata Reference](https://github.com/devcontainers/spec/blob/main/docs/specs/devcontainerjson-reference.md).
 1. Populate the `devcontainer.json` file with the required settings:
 
 ```json
