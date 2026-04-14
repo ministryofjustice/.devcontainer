@@ -23,7 +23,7 @@ Additionally this repository serves documentation relating to the use and config
 
 Contact us on our Slack channel - [`#devcontainer-community`](https://moj.enterprise.slack.com/archives/C06DZ4F04JZ).
 
-Official documentation is located [here](https://code.visualstudio.com/docs/devcontainers/create-dev-container).
+Read the official Dev Containers documentation on [Visual Studio Code](https://code.visualstudio.com/docs/devcontainers/create-dev-container).
 
 ## Benefits of Development Containers
 
@@ -47,7 +47,7 @@ Official documentation is located [here](https://code.visualstudio.com/docs/devc
 
 1. Create a `.devcontainer` folder in the root of your project.
 1. Add a `devcontainer.json` file to the `.devcontainer` folder.
-   There are a number of parameters which can be included in a devconatiner.json file, these are noted in detail [here](https://containers.dev/implementors/json_reference/).
+  There are a number of parameters which can be included in a devcontainer.json file, documented in the [Dev Container Metadata Reference](https://github.com/devcontainers/spec/blob/main/docs/specs/devcontainerjson-reference.md).
 1. Populate the `devcontainer.json` file with the required settings:
 
 ```json
@@ -59,17 +59,17 @@ Official documentation is located [here](https://code.visualstudio.com/docs/devc
 
 In the example above, the `name` parameter specifies the name of the development container, and the `image` parameter specifies the base image for the development container.
 
-The `ghcr.io/ministryofjustice/devcontainer-base` image is an extension of `mcr.microsoft.com/devcontainers/base:ubuntu-24.04`. The enhancements are documented [here](https://github.com/ministryofjustice/.devcontainer/blob/main/images/base/Dockerfile).
+The `ghcr.io/ministryofjustice/devcontainer-base` image is an extension of `mcr.microsoft.com/devcontainers/base:ubuntu-24.04`. The enhancements are documented in the [base image Dockerfile](https://github.com/ministryofjustice/.devcontainer/blob/main/images/base/Dockerfile).
 
 ## What are Features?
 
 In the context of the Ministry of Justice Development Container community, features are built by the community to satisfy the specific needs of our developers and the challenges they face on a day to day basis.
 
-Features created in the Dev Container community are described [here](https://containers.dev/features) both can be consumed when constructing a Development Container. From this point on, we will refer to these features as "Community Features" and Ministry of Justice feature as "Features".
+Features created in the Dev Container community are described in the [containers.dev Features directory](https://containers.dev/features) and can be consumed when constructing a Development Container. From this point on, we will refer to these features as "Community Features" and Ministry of Justice feature as "Features".
 
 Features are built using the [.devcontainer](https://github.com/ministryofjustice/.devcontainer/) GitHub repository and are designed to be modular and reusable. This means that features can be combined to create a custom development environment that meets the needs of a specific project or team.
 
-Features are can be used by Sofware Developers and those in Operations Roles to create consistent and reliable development environments for the applications and services they work on.
+Features can be used by Software Developers and those in Operations Roles to create consistent and reliable development environments for the applications and services they work on.
 
 ## Ministry of Justice Features
 
@@ -136,4 +136,4 @@ In the example above, the `features` array includes the `docker-in-docker`, `con
 
 ## Contributing
 
-The base branch requires all commits to be signed. Learn more about signing commits [here](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification).
+The base branch requires all commits to be signed. Learn more in the [GitHub commit signature verification guide](https://docs.github.com/en/authentication/managing-commit-signature-verification/about-commit-signature-verification).
