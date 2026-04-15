@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2026-04-15
+
+- Minor internal changes and improvements.
+
 ## [1.1.0] - 2025-05-13
 
 - Updated completion setup for <https://github.com/synfinatic/aws-sso-cli/releases/tag/v2.0.0>

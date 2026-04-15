@@ -1,6 +1,6 @@
 {
   "id": "container-structure-test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "Container Structure Test",
   "description": "Installs the Container Structure Test CLI",
   "options": {
