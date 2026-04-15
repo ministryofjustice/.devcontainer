@@ -74,8 +74,8 @@ jobs:
           if skopeo list-tags "docker://ghcr.io/ministryofjustice/devcontainer-feature/${MATRIX_FEATURE}"; then
             feature_exists=true
           else
-            echo "feature_exists=false" >>"${GITHUB_ENV}"
-            echo "tag_exists=false" >>"${GITHUB_ENV}"
+            echo "FEATURE_EXISTS=false" >>"${GITHUB_ENV}"
+            echo "TAG_EXISTS=false" >>"${GITHUB_ENV}"
           fi
 
           if [[ "${feature_exists}" == "true" ]]; then
@@ -83,9 +83,9 @@ jobs:
             export checkTag
 
             if [[ -z "${checkTag}" ]]; then
-              echo "tag_exists=false" >>"${GITHUB_ENV}"
+              echo "TAG_EXISTS=false" >>"${GITHUB_ENV}"
             else
-              echo "tag_exists=true" >>"${GITHUB_ENV}"
+              echo "TAG_EXISTS=true" >>"${GITHUB_ENV}"
             fi
           fi
 
@@ -102,13 +102,13 @@ jobs:
             echo "SHA not found for main branch, assuming CHANGELOG.md does not exist"
           elif [[ -z "${branchSha}" ]]; then
             echo "SHA not found for ${GITHUB_HEAD_REF} branch, assuming CHANGELOG.md does not exist"
-            echo "changelog_updated=false" >>"${GITHUB_ENV}"
+            echo "CHANGELOG_UPDATED=false" >>"${GITHUB_ENV}"
           elif [[ "${mainSha}" == "${branchSha}" ]]; then
             echo "CHANGELOG.md matches main branch, needs to be updated"
-            echo "changelog_updated=false" >>"${GITHUB_ENV}"
+            echo "CHANGELOG_UPDATED=false" >>"${GITHUB_ENV}"
           elif [[ "${mainSha}" != "${branchSha}" ]]; then
             echo "CHANGELOG.md does not match main branch, does not need to be updated"
-            echo "changelog_updated=true" >>"${GITHUB_ENV}"
+            echo "CHANGELOG_UPDATED=true" >>"${GITHUB_ENV}"
           fi
 
       - name: Evaluate Checks
