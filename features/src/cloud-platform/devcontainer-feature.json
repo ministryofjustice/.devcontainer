@@ -1,6 +1,6 @@
 {
   "id": "cloud-platform",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "Cloud Platform",
   "description": "Installs the Cloud Platform CLI",
   "options": {
