@@ -34,3 +34,5 @@ install --owner=vscode --group=vscode --mode=775 "apm-linux-${ARCHITECTURE}/apm"
 cp --archive "apm-linux-${ARCHITECTURE}/_internal" /usr/local/bin/_internal
 
 chown --recursive vscode:vscode /usr/local/bin/_internal
+
+rm -rf "apm-linux-${ARCHITECTURE}.tar.gz" "apm-linux-${ARCHITECTURE}"
