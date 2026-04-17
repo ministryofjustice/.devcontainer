@@ -35,4 +35,4 @@ cp --archive "apm-linux-${ARCHITECTURE}/_internal" /usr/local/bin/_internal
 
 chown --recursive vscode:vscode /usr/local/bin/_internal
 
-rm -rf "apm-linux-${ARCHITECTURE}.tar.gz" "apm-linux-${ARCHITECTURE}"
+rm --recursive --force "apm-linux-${ARCHITECTURE}.tar.gz" "apm-linux-${ARCHITECTURE}"
