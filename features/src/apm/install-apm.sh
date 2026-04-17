@@ -10,6 +10,7 @@ get_system_architecture
 
 GITHUB_REPOSITORY="microsoft/apm"
 VERSION=${APMVERSION:-"latest"}
+APM_INSTALL_DIR="/usr/local/lib/apm"
 
 if [[ "${VERSION}" == "latest" ]]; then
   get_github_latest_tag "${GITHUB_REPOSITORY}"
@@ -24,15 +25,19 @@ if [[ "${ARCHITECTURE}" == "amd64" ]]; then
   ARCHITECTURE="x86_64"
 fi
 
+mkdir --parents "${APM_INSTALL_DIR}"
+
 curl --fail-with-body --location "https://github.com/${GITHUB_REPOSITORY}/releases/download/${VERSION}/apm-linux-${ARCHITECTURE}.tar.gz" \
   --output "apm-linux-${ARCHITECTURE}.tar.gz"
 
 tar --gzip --extract --file "apm-linux-${ARCHITECTURE}.tar.gz"
 
-install --owner=vscode --group=vscode --mode=775 "apm-linux-${ARCHITECTURE}/apm" /usr/local/bin/apm
+install --owner=vscode --group=vscode --mode=775 "apm-linux-${ARCHITECTURE}/apm" "${APM_INSTALL_DIR}/apm"
 
-cp --archive "apm-linux-${ARCHITECTURE}/_internal" /usr/local/bin/_internal
+cp --archive "apm-linux-${ARCHITECTURE}/_internal" "${APM_INSTALL_DIR}/_internal"
 
-chown --recursive vscode:vscode /usr/local/bin/_internal
+chown --recursive vscode:vscode "${APM_INSTALL_DIR}/_internal"
+
+ln --symbolic "${APM_INSTALL_DIR}/apm" "/usr/local/bin/apm"
 
 rm --recursive --force "apm-linux-${ARCHITECTURE}.tar.gz" "apm-linux-${ARCHITECTURE}"
