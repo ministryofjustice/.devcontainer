@@ -24,7 +24,7 @@ if [[ "${ARCHITECTURE}" == "amd64" ]]; then
   ARCHITECTURE="x86_64"
 fi
 
-curl --fail-with-body --location "https://github.com/microsoft/apm/releases/download/${VERSION}/apm-linux-${ARCHITECTURE}.tar.gz" \
+curl --fail-with-body --location "https://github.com/${GITHUB_REPOSITORY}/releases/download/${VERSION}/apm-linux-${ARCHITECTURE}.tar.gz" \
   --output "apm-linux-${ARCHITECTURE}.tar.gz"
 
 tar --gzip --extract --file "apm-linux-${ARCHITECTURE}.tar.gz"
