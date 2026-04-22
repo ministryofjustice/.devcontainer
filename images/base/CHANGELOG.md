@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.1.0] - 2026-04-22
+
+### Changes
+
+- Deploys MOJ Production RootCA to enable running on Prisma
+
 ## [4.0.0] - 2026-03-25
 
 ### Changes
