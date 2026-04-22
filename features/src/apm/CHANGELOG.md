@@ -9,14 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.0] - 2026-04-15
-
-### Added
-
-- Add `apm` feature
-
 ## [1.1.0] - 2026-04-22
 
 ### Added
 
 - Install any `apm` packages on feature install
+
+## [1.0.0] - 2026-04-15
+
+### Added
+
+- Add `apm` feature
