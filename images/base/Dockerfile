@@ -12,12 +12,16 @@ LABEL org.opencontainers.image.vendor="Ministry of Justice" \
 
 SHELL ["/bin/bash", "-e", "-u", "-o", "pipefail", "-c"]
 
+COPY --chown=root:root --chmod=0644 src/usr/local/share/ca-certificates/moj-root.crt /usr/local/share/ca-certificates/moj-root.crt
 COPY --chown=nobody:nobody --chmod=0755 src/usr/local/bin/devcontainer-utils /usr/local/bin/devcontainer-utils
 COPY --chown=nobody:nobody --chmod=0444 src/usr/local/etc/vscode-dev-containers/first-run-notice.txt /usr/local/etc/vscode-dev-containers/first-run-notice.txt
 COPY --chown=vscode:vscode --chmod=0755 src/home/vscode/.zshrc.snippet /home/vscode/.zshrc.snippet
 COPY --chown=vscode:vscode --chmod=0755 src/home/vscode/.oh-my-zsh/custom/themes/devcontainers.zsh-theme /home/vscode/.oh-my-zsh/custom/themes/devcontainers.zsh-theme
 
 RUN <<EOF
+
+update-ca-certificates
+
 apt-get update --yes
 
 apt-get upgrade --yes
