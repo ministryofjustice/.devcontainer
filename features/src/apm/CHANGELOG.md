@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Install any `apm` packages on feature install
+- Install any configured `apm` packages via a `featurerc.d` hook when shells start
 
 ## [1.0.0] - 2026-04-15
 
