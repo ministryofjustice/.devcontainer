@@ -22,6 +22,13 @@ commandTests:
     args: ["--version"]
 
 fileExistenceTests:
+  - name: "moj-root.crt"
+    path: "/usr/local/share/ca-certificates/moj-root.crt"
+    shouldExist: true
+    permissions: "-rw-r--r--" # 0644
+    uid: 0
+    gid: 0
+
   - name: "devcontainer-utils"
     path: "/usr/local/bin/devcontainer-utils"
     shouldExist: true
