@@ -69,3 +69,7 @@ fileContentTests:
   - name: "zshrc featurerc.d"
     path: "/home/vscode/.zshrc"
     expectedContents: ["# dev container feature completion scripts"]
+
+  - name: "ca-certificates.crt moj-root.crt"
+    path: "/etc/ssl/certs/ca-certificates.crt"
+    expectedContents: ["MIIFVjCCAz6gAwIBAgIEX6U4NjANBgkqhkiG9w0BAQsFADBLMQswCQYDVQQGEwJH"]
