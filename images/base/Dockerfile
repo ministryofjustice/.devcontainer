@@ -18,17 +18,9 @@ COPY --chown=nobody:nobody --chmod=0444 src/usr/local/etc/vscode-dev-containers/
 COPY --chown=vscode:vscode --chmod=0755 src/home/vscode/.zshrc.snippet /home/vscode/.zshrc.snippet
 COPY --chown=vscode:vscode --chmod=0755 src/home/vscode/.oh-my-zsh/custom/themes/devcontainers.zsh-theme /home/vscode/.oh-my-zsh/custom/themes/devcontainers.zsh-theme
 
-USER root
-
 RUN <<EOF
 
 update-ca-certificates
-
-EOF
-
-USER vscode
-
-RUN <<EOF
 
 apt-get update --yes
 
