@@ -40,4 +40,6 @@ chown --recursive vscode:vscode "${APM_INSTALL_DIR}/_internal"
 
 ln --symbolic --force "${APM_INSTALL_DIR}/apm" "/usr/local/bin/apm"
 
+install --owner=vscode --group=vscode --mode=775 "$(dirname "${0}")"/src/home/vscode/.devcontainer/featurerc.d/apm.sh /home/vscode/.devcontainer/featurerc.d/apm.sh
+
 rm --recursive --force "apm-linux-${ARCHITECTURE}.tar.gz" "apm-linux-${ARCHITECTURE}"
