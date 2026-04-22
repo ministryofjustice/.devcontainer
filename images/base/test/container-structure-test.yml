@@ -72,4 +72,5 @@ fileContentTests:
 
   - name: "ca-certificates.crt moj-root.crt"
     path: "/etc/ssl/certs/ca-certificates.crt"
-    expectedContents: ["MIIFVjCCAz6gAwIBAgIEX6U4NjANBgkqhkiG9w0BAQsFADBLMQswCQYDVQQGEwJH"]
+    expectedContents:
+      ["MIIFVjCCAz6gAwIBAgIEX6U4NjANBgkqhkiG9w0BAQsFADBLMQswCQYDVQQGEwJH"]
