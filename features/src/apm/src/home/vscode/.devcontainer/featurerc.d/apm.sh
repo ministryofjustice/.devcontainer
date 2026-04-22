@@ -4,7 +4,8 @@ APM_INSTALLED_FLAG="/home/vscode/.devcontainer/.apm-packages-installed"
 
 if [ ! -f "${APM_INSTALLED_FLAG}" ]; then
   if [ -f "apm.yml" ]; then
-    apm install
+    if apm install; then
+      touch "${APM_INSTALLED_FLAG}"
+    fi
   fi
-  touch "${APM_INSTALLED_FLAG}"
 fi
