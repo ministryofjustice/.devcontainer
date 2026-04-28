@@ -8,6 +8,8 @@
 - [Adding a Development Container to a Project](#adding-a-development-container-to-a-project)
 - [What are Features?](#what-are-features)
 - [Ministry of Justice Features](#ministry-of-justice-features)
+  - [APM](#apm)
+  - [Astral](#astral)
   - [AWS](#aws)
   - [Cloud Platform](#cloud-platform)
   - [Container Structure Tests](#container-structure-tests)
@@ -78,6 +80,10 @@ Features are located in the [features](https://github.com/ministryofjustice/.dev
 ### APM
 
 The APM feature installs Microsoft's Agent Package Manager ([`apm`](https://github.com/microsoft/apm)) CLI.
+
+### Astral
+
+The Astral feature installs Astral tools: [`uv`](https://github.com/astral-sh/uv) and [`ruff`](https://github.com/astral-sh/ruff).
 
 ### AWS
 
