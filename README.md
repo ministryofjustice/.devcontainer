@@ -75,6 +75,10 @@ Features can be used by Software Developers and those in Operations Roles to cre
 
 Features are located in the [features](https://github.com/ministryofjustice/.devcontainer/tree/main/features/src) folder in the Development Container GitHub repository. Each feature is listed below.
 
+### APM
+
+The APM feature installs Microsoft's Agent Package Manager ([`apm`](https://github.com/microsoft/apm)) CLI.
+
 ### AWS
 
 The AWS feature installs the [AWS CLI](https://aws.amazon.com/cli/) and [AWS SSO CLI](https://github.com/synfinatic/aws-sso-cli) .
