@@ -77,7 +77,7 @@ Features are located in the [features](https://github.com/ministryofjustice/.dev
 
 ### APM
 
-The APM feature installs [APM](https://github.com/microsoft/apm) packages and tools.
+The APM feature installs Microsoft's Agent Package Manager ([`apm`](https://github.com/microsoft/apm)) CLI.
 
 ### AWS
 
