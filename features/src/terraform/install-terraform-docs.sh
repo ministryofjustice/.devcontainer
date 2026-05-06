@@ -20,7 +20,6 @@ else
   VERSION_STRIP_V="${VERSION#v}"
 fi
 
-
 curl --fail-with-body --location "https://github.com/terraform-docs/terraform-docs/releases/download/${VERSION}/terraform-docs-${VERSION}-linux-${ARCHITECTURE}.tar.gz" \
   --output "terraform-docs-${VERSION}-linux-${ARCHITECTURE}.tar.gz"
 
