@@ -9,7 +9,7 @@ source /usr/local/bin/devcontainer-utils
 get_system_architecture
 
 GITHUB_REPOSITORY="terraform-docs/terraform-docs"
-VERSION=${TERRAFORMDOCSVERSION:-"latest"}
+VERSION="${TERRAFORMDOCSVERSION:-"latest"}"
 
 if [[ "${VERSION}" == "latest" ]]; then
   get_github_latest_tag "${GITHUB_REPOSITORY}"
@@ -23,8 +23,8 @@ fi
 curl --fail-with-body --location "https://github.com/terraform-docs/terraform-docs/releases/download/${VERSION}/terraform-docs-${VERSION}-linux-${ARCHITECTURE}.tar.gz" \
   --output "terraform-docs-${VERSION}-linux-${ARCHITECTURE}.tar.gz"
 
-tar --gzip --extract --file "terraform-docs-${VERSION}-linux-${ARCHITECTURE}.tar.gz"
+tar --gzip --extract --file "terraform-docs-${VERSION}-linux-${ARCHITECTURE}.tar.gz" terraform-docs
 
 install --owner=vscode --group=vscode --mode=775 "terraform-docs" "/usr/local/bin/terraform-docs"
 
-rm --recursive --force "terraform-docs" "terraform-docs-${VERSION}-linux-${ARCHITECTURE}.tar.gz" "README.md" "LICENSE"
+rm --recursive --force "terraform-docs" "terraform-docs-${VERSION}-linux-${ARCHITECTURE}.tar.gz"
