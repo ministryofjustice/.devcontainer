@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-05-06
+
+- Added [terraform-docs](https://terraform-docs.io/)
+
 ## [1.2.1] - 2026-04-15
 
 - Minor internal changes and improvements.
