@@ -8,7 +8,7 @@ source /usr/local/bin/devcontainer-utils
 
 get_system_architecture
 
-GITHUB_REPOSITORY="vmware-tanzu/velero"
+GITHUB_REPOSITORY="velero-io/velero"
 VERSION=${VELEROCLIVERSION:-"latest"}
 
 if [[ "${VERSION}" == "latest" ]]; then

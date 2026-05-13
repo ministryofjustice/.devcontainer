@@ -52,7 +52,7 @@ get_system_architecture() {
 get_github_latest_tag() {
   local repository="${1}"
 
-  repositoryLatestTag="$(curl --silent https://api.github.com/repos/"${repository}"/releases/latest | jq -r '.tag_name')"
+  repositoryLatestTag="$(curl --silent --location https://api.github.com/repos/"${repository}"/releases/latest | jq -r '.tag_name')"
   export repositoryLatestTag
 
   repositoryLatestTagStripV=${repositoryLatestTag//v/}

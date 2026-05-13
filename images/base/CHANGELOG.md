@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.2.0] - 2026-05-07
+
+### Changes
+
+- fix: follow GitHub API redirects in get_github_latest_tag
+
 ## [4.1.0] - 2026-04-22
 
 ### Changes
