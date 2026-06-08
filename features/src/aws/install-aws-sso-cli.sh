@@ -9,7 +9,7 @@ source /usr/local/bin/devcontainer-utils
 get_system_architecture
 
 GITHUB_REPOSITORY="synfinatic/aws-sso-cli"
-VERSION="${AWSVAULTVERSION:-"latest"}"
+VERSION="${AWSSSOCLIVERSION:-"latest"}"
 INSTALL_PROMPT="${INSTALLAWSSSOCLIPROMPT:-"true"}"
 
 if [[ "${VERSION}" == "latest" ]]; then

@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.2] - 2026-05-21
+
+- Fixed `install-aws-sso-cli.sh` referencing incorrect variable `AWSVAULTVERSION` instead of `AWSSSOCLIVERSION` for version selection
+
 ## [1.1.1] - 2026-04-15
 
 - Minor internal changes and improvements.
