@@ -13,8 +13,8 @@ export DEBIAN_FRONTEND="noninteractive"
 logger() {
   local type="${1}"
   local message="${2}"
-  timestamp=$(date --rfc-3339=seconds)
   local timestamp
+  timestamp=$(date --rfc-3339=seconds)
 
   case "${type}" in
   err | error)
