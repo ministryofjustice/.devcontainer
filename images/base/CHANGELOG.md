@@ -9,11 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.2.1] - 2026-05-07
+
+### Fixed
+
+- Minor refactor of `logger()` in [`src/usr/local/bin/devcontainer-utils`](./src/usr/local/bin/devcontainer-utils) - see [#298](https://github.com/ministryofjustice/.devcontainer/pull/298)
+
 ## [4.2.0] - 2026-05-07
 
-### Changes
+### Fixed
 
-- fix: follow GitHub API redirects in get_github_latest_tag
+- Follow GitHub API redirects in get_github_latest_tag
 
 ## [4.1.0] - 2026-04-22
 
