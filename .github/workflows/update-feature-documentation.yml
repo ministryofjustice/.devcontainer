@@ -1,0 +1,57 @@
+---
+name: Update Feature Documentation
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "features/src/**"
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  generate:
+    name: Generate feature documentation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true
+
+      - name: Generate documentation
+        uses: devcontainers/action@1082abd5d2bf3a11abccba70eef98df068277772 # v1.4.3
+        with:
+          generate-docs: "true"
+          base-path-to-features: "./features/src"
+
+      - name: Create pull request when documentation changes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          if git diff --quiet -- 'features/src/**/README.md'; then
+            echo "No generated documentation changes."
+            exit 0
+          fi
+
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+          branch="automated-feature-docs-${GITHUB_RUN_ID}"
+          git checkout -b "${branch}"
+          git add features/src/**/README.md
+          git commit -m "docs: update generated feature documentation"
+          git push origin "${branch}"
+
+          gh pr create \
+            --base main \
+            --head "${branch}" \
+            --title "Update generated feature documentation" \
+            --body "Automated update of Dev Container feature documentation generated from feature metadata."
