@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Added support for selecting a specific Google Cloud CLI version
-
 ## [1.0.0] - 2026-10-02
 
 - Initial release of feature
+- Added support for selecting a specific Google Cloud CLI version
