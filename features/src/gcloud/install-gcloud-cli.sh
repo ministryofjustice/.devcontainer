@@ -12,7 +12,7 @@ curl --fail-with-body --location --silent --show-error https://packages.cloud.go
   gpg --dearmor --yes --output /usr/share/keyrings/cloud.google.gpg
 
 printf '%s\n' 'deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main' \
-  > /etc/apt/sources.list.d/google-cloud-sdk.list
+  >/etc/apt/sources.list.d/google-cloud-sdk.list
 
 apt-get update
 if [[ "${VERSION}" == "latest" ]]; then
