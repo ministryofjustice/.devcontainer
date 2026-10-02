@@ -4,9 +4,6 @@ set -e
 
 VERSION="${GCLOUDCLIVERSION:-latest}"
 
-apt-get update
-apt-get install --yes ca-certificates gnupg
-
 install --directory --mode=0755 /usr/share/keyrings
 curl --fail-with-body --location --silent --show-error https://packages.cloud.google.com/apt/doc/apt-key.gpg |
   gpg --dearmor --yes --output /usr/share/keyrings/cloud.google.gpg
