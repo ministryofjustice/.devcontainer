@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "name": "Google Cloud CLI",
   "description": "Installs the Google Cloud CLI (gcloud)",
-  "documentationURL": "https://cloud.google.com/sdk/docs/install",
+  "documentationURL": "https://github.com/ministryofjustice/.devcontainer/tree/main/features/src/gcloud",
   "options": {
     "gcloudCliVersion": {
       "type": "string",
