@@ -1,0 +1,15 @@
+{
+  "id": "gcloud",
+  "version": "1.0.0",
+  "name": "Google Cloud CLI",
+  "description": "Installs the Google Cloud CLI (gcloud)",
+  "documentationURL": "https://cloud.google.com/sdk/docs/install",
+  "options": {
+    "gcloudCliVersion": {
+      "type": "string",
+      "description": "Version of the Google Cloud CLI to install",
+      "proposals": ["latest"],
+      "default": "latest"
+    }
+  }
+}

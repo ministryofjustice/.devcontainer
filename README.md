@@ -13,6 +13,7 @@
   - [AWS](#aws)
   - [Cloud Platform](#cloud-platform)
   - [Container Structure Tests](#container-structure-tests)
+  - [Google Cloud CLI](#google-cloud-cli)
   - [Kubernetes](#kubernetes)
   - [Static Analysis](#static-analysis)
   - [Terraform](#terraform)
@@ -96,6 +97,10 @@ The Cloud Platform feature installs the [Cloud Platform CLI](https://user-guide.
 ### Container Structure Tests
 
 The Container Structure Tests feature installs the [container-structure-test](https://github.com/GoogleContainerTools/container-structure-test) CLI, this tool provides a powerful framework to validate the structure of a container image.
+
+### Google Cloud CLI
+
+The Google Cloud CLI feature installs the [`gcloud`](https://cloud.google.com/sdk/docs/install) CLI.
 
 ### Kubernetes
 
