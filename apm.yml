@@ -1,0 +1,9 @@
+name: devcontainer
+version: 1.0.0
+description: APM project for devcontainer
+author: Ministry of Justice
+targets:
+  - copilot
+dependencies:
+  apm:
+    - ministryofjustice/ai-toolkit/toolkits/universal#main
