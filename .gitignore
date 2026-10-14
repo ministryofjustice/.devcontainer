@@ -8,3 +8,6 @@ env/
 *.sha256
 terraform.tfstate
 .github/path-filters/
+
+# APM dependencies
+apm_modules/

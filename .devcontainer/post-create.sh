@@ -3,3 +3,5 @@
 uvx pre-commit install
 
 npm install --global @devcontainers/cli
+
+apm install
