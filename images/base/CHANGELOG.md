@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-10-14
+
+### Changes
+
+- Updated to [3.0.10](https://github.com/devcontainers/images/blob/main/src/base-ubuntu/manifest.json)
+
 ## [4.2.1] - 2026-05-07
 
 ### Fixed
