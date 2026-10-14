@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
-- Updated to [3.0.10](https://github.com/devcontainers/images/blob/main/src/base-ubuntu/history/3.0.10.md)
+- Updated to [3.0.10](https://github.com/devcontainers/images/blob/main/src/base-ubuntu/manifest.json)
 
 ## [4.2.1] - 2026-05-07
 
