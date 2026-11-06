@@ -7,6 +7,6 @@ set -e
 source dev-container-features-test-lib
 
 check "checkov version" task --version
-check "cloud-platform completions existence" stat /usr/local/share/zsh/site-functions/_task
+check "task completions existence" stat /usr/local/share/zsh/site-functions/_task
 
 reportResults
