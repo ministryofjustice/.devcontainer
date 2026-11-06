@@ -1,6 +1,6 @@
 {
   "name": "devcontainer-community",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-24.04",
+  "image": "ghcr.io/ministryofjustice/devcontainer-base:latest",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:": {},
     "ghcr.io/devcontainers/features/node:": {},
