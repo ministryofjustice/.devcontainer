@@ -6,7 +6,7 @@ set -e
 # file only accessible when using devcontainer CLI
 source dev-container-features-test-lib
 
-check "checkov version" task --version
+check "task version" task --version
 check "task completions existence" stat /usr/local/share/zsh/site-functions/_task
 
 reportResults
