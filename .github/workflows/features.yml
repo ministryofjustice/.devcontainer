@@ -7,11 +7,13 @@ on:
       - main
     paths:
       - features/**
+      - images/base/**
   push:
     branches:
       - main
     paths:
       - features/**
+      - images/base/**
 
 permissions: {}
 
@@ -23,6 +25,7 @@ jobs:
       contents: read
     outputs:
       features: ${{ steps.detect_changes.outputs.changes }}
+      test_features: ${{ steps.build_test_matrix.outputs.features }}
     steps:
       - name: Checkout
         id: checkout
@@ -39,6 +42,28 @@ jobs:
         uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
         with:
           filters: .github/path-filters/features.yml
+
+      - name: Detect base image changes
+        id: detect_base_image_changes
+        uses: dorny/paths-filter@ceb8a2b8f2d89434be7ff52d3de7ec3738c5cc9d # v4.0.3
+        with:
+          filters: |
+            base_image: images/base/**
+
+      - name: Build test matrix
+        id: build_test_matrix
+        env:
+          BASE_IMAGE_CHANGED: ${{ steps.detect_base_image_changes.outputs.base_image }}
+          CHANGED_FEATURES: ${{ steps.detect_changes.outputs.changes }}
+        run: |
+          # A base image change can break any feature, so test them all
+          if [[ "${BASE_IMAGE_CHANGED}" == "true" ]]; then
+            features=$(sed -n 's/^\([a-z0-9_-]*\): .*/\1/p' .github/path-filters/features.yml | jq -R . | jq -sc .)
+          else
+            features="${CHANGED_FEATURES}"
+          fi
+
+          echo "features=${features}" >>"${GITHUB_OUTPUT}"
 
   preflight-checks:
     needs: [detect-changes]
@@ -136,7 +161,7 @@ jobs:
 
   test:
     needs: [detect-changes]
-    if: ${{ needs.detect-changes.outputs.features != '[]' && github.ref != 'refs/heads/main' }}
+    if: ${{ needs.detect-changes.outputs.test_features != '[]' && github.ref != 'refs/heads/main' }}
     name: Test
     runs-on: ubuntu-latest
     permissions:
@@ -144,7 +169,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        feature: ${{ fromJson(needs.detect-changes.outputs.features) }}
+        feature: ${{ fromJson(needs.detect-changes.outputs.test_features) }}
     steps:
       - name: Checkout
         id: checkout

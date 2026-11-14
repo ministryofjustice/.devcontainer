@@ -1,0 +1,72 @@
+lockfile_version: '1'
+generated_at: '2026-10-14T08:10:44.869453+00:00'
+apm_version: 0.28.0
+dependencies:
+- repo_url: ministryofjustice/ai-toolkit
+  name: universal
+  host: github.com
+  resolved_commit: 466a8dd456cb715e56d32c41cfe0bab9aa19ae28
+  resolved_ref: main
+  version: 1.1.0
+  virtual_path: toolkits/universal
+  is_virtual: true
+  package_type: apm_package
+  deployed_files:
+  - .github/instructions/commit.instructions.md
+  - .github/instructions/language.instructions.md
+  - .github/instructions/ministryofjustice.instructions.md
+  deployed_file_hashes:
+    .github/instructions/commit.instructions.md: sha256:dd70841d42937bb61d3cb6b2eb4d4422c2095f15b0ea67513719d86a1750404d
+    .github/instructions/language.instructions.md: sha256:dbbd7951e0cfcdff32b237f1b35ab62ce9f30ceb6c3674f8f1d028a2b7c7c9be
+    .github/instructions/ministryofjustice.instructions.md: sha256:e5f98f5dae901db79b6a869826fb40fcc051fe1ddd057e5fd4dc8d7822e1e652
+  content_hash: sha256:9e3cba66d1ca5a6a1be1ebcbebd312934d46b297ca6d7bd14ea8b9303ed9cc63
+deployments:
+- kind: project-relative
+  target: copilot
+  value: .github/instructions/commit.instructions.md
+  runtime: null
+  scope: project
+  owners:
+  - ministryofjustice/ai-toolkit/toolkits/universal
+  active_owner: ministryofjustice/ai-toolkit/toolkits/universal
+  content_hash: sha256:dd70841d42937bb61d3cb6b2eb4d4422c2095f15b0ea67513719d86a1750404d
+- kind: project-relative
+  target: copilot
+  value: .github/instructions/language.instructions.md
+  runtime: null
+  scope: project
+  owners:
+  - ministryofjustice/ai-toolkit/toolkits/universal
+  active_owner: ministryofjustice/ai-toolkit/toolkits/universal
+  content_hash: sha256:dbbd7951e0cfcdff32b237f1b35ab62ce9f30ceb6c3674f8f1d028a2b7c7c9be
+- kind: project-relative
+  target: copilot
+  value: .github/instructions/ministryofjustice.instructions.md
+  runtime: null
+  scope: project
+  owners:
+  - ministryofjustice/ai-toolkit/toolkits/universal
+  active_owner: ministryofjustice/ai-toolkit/toolkits/universal
+  content_hash: sha256:e5f98f5dae901db79b6a869826fb40fcc051fe1ddd057e5fd4dc8d7822e1e652
+- kind: uri
+  target: mcp
+  value: github
+  runtime: vscode
+  scope: project
+  owners:
+  - .
+  active_owner: .
+  content_hash: null
+mcp_servers:
+- github
+mcp_configs:
+  github:
+    name: github
+    transport: http
+    registry: false
+    url: https://api.githubcopilot.com/mcp/
+mcp_target_servers:
+  vscode:
+  - github
+mcp_config_provenance:
+  github: universal
